@@ -1,0 +1,6 @@
+{% if include.member.photo %}
+  <img class="avatar{% if include.large %} avatar-lg{% endif %}" src="{{ include.member.photo | relative_url }}" alt="{{ include.member.name }}">
+{% else %}
+  {% assign parts = include.member.name | split: " " %}
+  <div class="avatar avatar-initials{% if include.large %} avatar-lg{% endif %}" aria-hidden="true">{% for part in parts limit: 2 %}{{ part | slice: 0 }}{% endfor %}</div>
+{% endif %}

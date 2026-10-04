@@ -1,0 +1,49 @@
+---
+layout: default
+description: A writing group for authors working on their first few books.
+---
+<section class="hero">
+  <div class="wrap">
+    <h1>Writers on their first few books.</h1>
+    <p class="lede">[Placeholder: a sentence or two about who you are, how often you meet and what you do together.]</p>
+    <p class="hero-actions">
+      <a class="button" href="{{ '/members/' | relative_url }}">Meet the members</a>
+      <a class="button button-ghost" href="{{ '/join/' | relative_url }}">Join us</a>
+    </p>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section-head">
+    <h2>Latest from the blog</h2>
+    <a href="{{ '/blog/' | relative_url }}">All posts &rarr;</a>
+  </div>
+  <div class="post-grid">
+    {% for post in site.posts limit: 3 %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+
+{% assign books = site.books | sort: "date" | reverse %}
+{% if books.size > 0 %}
+<section class="section wrap">
+  <div class="section-head">
+    <h2>Books by our members</h2>
+    <a href="{{ '/shop/' | relative_url }}">Visit the shop &rarr;</a>
+  </div>
+  <div class="book-grid">
+    {% for book in books limit: 4 %}
+      {% include book-card.html book=book %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="section wrap">
+  <div class="callout">
+    <h2>We're open to new members</h2>
+    <p>[Placeholder: who should get in touch.]</p>
+    <a class="button" href="{{ '/join/' | relative_url }}">How to join</a>
+  </div>
+</section>

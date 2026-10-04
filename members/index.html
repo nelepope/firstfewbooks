@@ -1,0 +1,17 @@
+---
+layout: default
+title: Members
+---
+<div class="wrap">
+  <h1>Members</h1>
+  <div class="member-grid">
+    {% assign members = site.members | sort: "name" %}
+    {% for member in members %}
+      <a class="member-card" href="{{ member.url | relative_url }}">
+        {% include avatar.html member=member %}
+        <h3>{{ member.name }}</h3>
+        {% if member.tagline %}<p>{{ member.tagline }}</p>{% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</div>

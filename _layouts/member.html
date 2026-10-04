@@ -1,0 +1,58 @@
+---
+layout: default
+---
+{% assign posts = site.posts | where: "author", page.slug %}
+{% assign books = site.books | where: "author", page.slug %}
+<div class="wrap member">
+  <header class="member-header">
+    {% include avatar.html member=page large=true %}
+    <div>
+      <h1>{{ page.name }}</h1>
+      {% if page.tagline %}<p class="tagline">{{ page.tagline }}</p>{% endif %}
+      {% if page.links %}
+        <p class="links">
+          {% for link in page.links %}<a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="prose narrow">
+    {{ content }}
+  </div>
+
+  {% if page.featured %}
+    <section class="section">
+      <h2>Featured writing</h2>
+      <ul class="featured-list">
+        {% for item in page.featured %}
+          <li>
+            <a href="{{ item.url | relative_url }}"{% unless item.url contains '://' %}{% else %} target="_blank" rel="noopener"{% endunless %}>{{ item.title }}</a>
+            {% if item.where %}<span class="meta"> · {{ item.where }}</span>{% endif %}
+            {% if item.note %}<p>{{ item.note }}</p>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if posts.size > 0 %}
+    <section class="section">
+      <h2>Blog posts</h2>
+      <div class="post-list">
+        {% for post in posts %}{% include post-card.html post=post %}{% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if books.size > 0 %}
+    <section class="section">
+      <h2>Books</h2>
+      <div class="book-grid">
+        {% for book in books %}{% include book-card.html book=book %}{% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <p class="back"><a href="{{ '/members/' | relative_url }}">&larr; All members</a></p>
+</div>

@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
+    <nav class="site-nav">
+      <a href="{{ '/members/' | relative_url }}"{% if page.url contains '/members/' %} aria-current="page"{% endif %}>Members</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+      <a href="{{ '/shop/' | relative_url }}"{% if page.url contains '/shop/' %} aria-current="page"{% endif %}>Shop</a>
+      <a href="{{ '/join/' | relative_url }}"{% if page.url contains '/join/' %} aria-current="page"{% endif %}>Join</a>
+    </nav>
+  </div>
+</header>

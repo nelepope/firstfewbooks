@@ -1,0 +1,12 @@
+---
+layout: default
+title: Blog
+---
+<div class="wrap narrow">
+  <h1>Blog</h1>
+  <div class="post-list">
+    {% for post in site.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</div>

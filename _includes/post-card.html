@@ -1,0 +1,9 @@
+{% assign author = site.members | where: "slug", include.post.author | first %}
+<article class="post-card">
+  <p class="meta">
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%-d %B %Y" }}</time>
+    {% if author %} · <a href="{{ author.url | relative_url }}">{{ author.name }}</a>{% endif %}
+  </p>
+  <h3><a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h3>
+  <p>{{ include.post.excerpt | strip_html | truncatewords: 30 }}</p>
+</article>
