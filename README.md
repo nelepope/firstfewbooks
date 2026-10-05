@@ -4,22 +4,13 @@ The website for the First Few Books writing group, at [firstfewbooks.com](https:
 
 It's built with Jekyll, which GitHub Pages runs automatically. Every change pushed to `main` goes live within a minute or two.
 
-## Add a blog post
+## Blog posts
 
-Create a file in `_posts/` named `YYYY-MM-DD-short-title.md`:
+Posts aren't written on this site. They're pulled in from each member's Substack every 6 hours, and every card links out to the post on Substack. Give a member a `substack:` line (below) and their posts will appear on the home page, the blog page and their profile.
 
-```markdown
----
-title: What we learned from our first critique night
-author: jane-smith
----
+For a blog that isn't on Substack, use `feed:` with the full RSS address instead (for example `feed: https://example.wordpress.com/feed`).
 
-The first paragraph becomes the preview on the home page.
-
-The rest of the post goes here.
-```
-
-`author` must match the member's filename in `_members/` (without `.md`). The post then appears on the blog, on the home page if it's one of the three newest, and on that member's profile.
+To pull in new posts straight away, go to the repo's **Actions** tab, choose **Build and deploy** and click **Run workflow**.
 
 ## Add a member
 
@@ -29,6 +20,7 @@ Create `_members/jane-smith.md`:
 ---
 name: Jane Smith
 tagline: Writing a debut crime novel.
+substack: https://janesmith.substack.com
 photo: /assets/images/members/jane-smith.jpg   # optional; initials are shown otherwise
 links:
   - label: Website
@@ -68,7 +60,7 @@ Colours and fonts are set at the top of `assets/css/style.css`.
 ## Preview locally
 
 ```bash
-~/.gem/ruby/2.6.0/bin/jekyll serve
+python3 scripts/fetch_feeds.py && ~/.gem/ruby/2.6.0/bin/jekyll serve
 ```
 
 Then open http://localhost:4000.

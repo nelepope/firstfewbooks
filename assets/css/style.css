@@ -113,8 +113,11 @@ main > .wrap:first-child { padding-top: 48px; }
 .post-grid .post-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
 .post-list .post-card { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .post-card h3 { margin: .2em 0 .4em; }
-.post-card h3 a { color: var(--text); text-decoration: none; }
-.post-card h3 a:hover { color: var(--accent); }
+.post-link { color: var(--text); text-decoration: none; }
+.post-link:hover h3 { color: var(--accent); }
+.post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 14px; background: var(--cover); }
+.post-grid .post-card { overflow: hidden; }
+.post-list .post-image { max-width: 320px; }
 .post-card p:last-child { margin-bottom: 0; color: var(--muted); }
 
 .post-header { margin-bottom: 32px; }

@@ -1,0 +1,43 @@
+# Builds the site and publishes it to GitHub Pages.
+# Runs on every push, every 6 hours (to pick up new Substack posts), and on demand.
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch members' posts
+        run: python scripts/fetch_feeds.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

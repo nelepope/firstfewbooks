@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign posts = site.posts | where: "author", page.slug %}
+{% assign posts = site.data.feed | where: "author", page.slug %}
 {% assign books = site.books | where: "author", page.slug %}
 <div class="wrap member">
   <header class="member-header">

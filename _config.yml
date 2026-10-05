@@ -8,8 +8,6 @@ timezone: Europe/London
 # Lets books with a future publication date show in the shop.
 future: true
 
-permalink: /blog/:year/:month/:title/
-
 collections:
   members:
     output: true
@@ -20,15 +18,11 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: posts
-    values:
-      layout: post
-  - scope:
-      path: ""
       type: members
     values:
       layout: member
 
 exclude:
   - README.md
+  - scripts
   - .DS_Store

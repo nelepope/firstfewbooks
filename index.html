@@ -19,8 +19,10 @@ description: A writing group for authors working on their first few books.
     <a href="{{ '/blog/' | relative_url }}">All posts &rarr;</a>
   </div>
   <div class="post-grid">
-    {% for post in site.posts limit: 3 %}
+    {% for post in site.data.feed limit: 3 %}
       {% include post-card.html post=post %}
+    {% else %}
+      <p class="meta">Posts from members' Substacks will appear here.</p>
     {% endfor %}
   </div>
 </section>
