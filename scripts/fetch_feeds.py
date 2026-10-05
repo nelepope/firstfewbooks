@@ -33,7 +33,12 @@ def feed_url(fields):
     if "feed" in fields:
         return fields["feed"]
     if "substack" in fields:
-        return fields["substack"].rstrip("/") + "/feed"
+        # Accept "name.substack.com" or a link to one post: keep just the site's address.
+        address = fields["substack"]
+        if "://" not in address:
+            address = "https://" + address
+        scheme, rest = address.split("://", 1)
+        return f"{scheme}://{rest.split('/')[0]}/feed"
     return None
 
 
