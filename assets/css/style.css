@@ -98,7 +98,6 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Home */
 .hero { padding: 88px 0 72px; border-bottom: 1px solid var(--line); }
 .hero h1 { max-width: 14em; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
 .section { padding-top: 64px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
