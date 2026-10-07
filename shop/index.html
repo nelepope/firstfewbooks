@@ -9,6 +9,8 @@ title: Shop
     {% assign books = site.books | sort: "date" | reverse %}
     {% for book in books %}
       {% include book-card.html book=book %}
+    {% else %}
+      <p class="meta">Members' books are coming soon.</p>
     {% endfor %}
   </div>
 </div>

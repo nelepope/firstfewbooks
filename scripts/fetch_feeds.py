@@ -33,8 +33,8 @@ def feed_url(fields):
     if "feed" in fields:
         return fields["feed"]
     if "substack" in fields:
-        # Accept "name", "name.substack.com" or a link to one post: keep just the site's address.
-        address = fields["substack"]
+        # Accept "name", "@name", "name.substack.com" or a link to one post: keep just the site's address.
+        address = fields["substack"].lstrip("@")
         if "." not in address:
             address += ".substack.com"
         if "://" not in address:
