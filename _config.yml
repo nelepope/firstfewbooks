@@ -11,7 +11,7 @@ future: true
 collections:
   members:
     output: true
-    permalink: /members/:name/
+    permalink: /writers/:name/
   books:
     output: false
 
