@@ -8,7 +8,14 @@ title: Writers
     {% assign members = site.members | sort: "name" %}
     {% for member in members %}
       <a class="member-card" href="{{ member.url | relative_url }}">
-        {% include avatar.html member=member %}
+        {% comment %}The whole photo (portrait), falling back to the square crop (photo).{% endcomment %}
+        {% assign full_photo = member.portrait | default: member.photo %}
+        {% if full_photo %}
+          <img class="member-card-photo" src="{{ full_photo | relative_url }}" alt="{{ member.name }}" loading="lazy">
+        {% else %}
+          {% assign parts = member.name | split: " " %}
+          <div class="member-card-initials" aria-hidden="true">{% for part in parts limit: 2 %}{{ part | slice: 0 }}{% endfor %}</div>
+        {% endif %}
         <h3>{{ member.name }}</h3>
         {% if member.tagline %}<p>{{ member.tagline }}</p>{% endif %}
       </a>

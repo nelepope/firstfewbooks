@@ -5,17 +5,15 @@ layout: default
 {% assign books = site.books | where: "author", page.slug %}
 <div class="wrap member">
   <header class="member-header">
-    <h1>{{ page.name }}</h1>
-    {% if page.tagline %}<p class="tagline">{{ page.tagline }}</p>{% endif %}
+    {% include avatar.html member=page large=true %}
+    <div>
+      <h1>{{ page.name }}</h1>
+      {% if page.tagline %}<p class="tagline">{{ page.tagline }}</p>{% endif %}
+    </div>
   </header>
 
-  {% comment %}The profile shows the whole photo (portrait); the Writers grid uses the square crop (photo).{% endcomment %}
-  {% assign full_photo = page.portrait | default: page.photo %}
-  <div class="member-intro{% unless full_photo %} member-intro-text-only{% endunless %}">
-    {% if full_photo %}<img class="member-photo" src="{{ full_photo | relative_url }}" alt="{{ page.name }}">{% endif %}
-    <div class="prose">
-      {{ content }}
-    </div>
+  <div class="prose narrow">
+    {{ content }}
   </div>
 
   {% if page.featured %}

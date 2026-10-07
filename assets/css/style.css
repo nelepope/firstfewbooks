@@ -167,21 +167,18 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 .avatar-lg.avatar-initials { font-size: 2.4rem; }
 
-.member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; margin-top: 24px; }
-.member-card {
-  display: block; padding: 28px 24px; text-align: center; text-decoration: none; color: var(--text);
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+.member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px; margin-top: 24px; align-items: start; }
+.member-card { display: block; text-decoration: none; color: var(--text); }
+.member-card-photo { display: block; width: 100%; height: auto; margin-bottom: 12px; }
+.member-card-initials {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 5; margin-bottom: 12px;
+  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 300; font-size: 3rem;
 }
-.member-card:hover { border-color: var(--accent); }
-.member-card .avatar { width: 96px; height: 96px; margin: 0 auto 16px; font-size: 2rem; }
-.member-card p { color: var(--muted); margin: 0; font-size: .95rem; }
+.member-card h3 { margin: 0; }
+.member-card:hover h3 { color: var(--accent); }
+.member-card p { color: var(--muted); margin: .2em 0 0; font-size: .95rem; }
 
-.member-header { margin-bottom: 32px; }
-.member-intro { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 40px; align-items: start; }
-.member-intro-text-only { grid-template-columns: minmax(0, 720px); }
-.member-photo { display: block; width: 100%; height: auto; }
-.member-intro .prose p:first-child { margin-top: 0; }
-@media (max-width: 760px) { .member-intro { grid-template-columns: 1fr; gap: 24px; } .member-photo { max-width: 420px; } }
+.member-header { display: flex; align-items: center; gap: 28px; margin-bottom: 32px; }
 .member-header h1 { margin-bottom: .2em; }
 .tagline { color: var(--muted); margin: 0 0 .5em; font-size: 1.1rem; }
 .links { display: flex; flex-wrap: wrap; gap: 16px; margin: 0; }
