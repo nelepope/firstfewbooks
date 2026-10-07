@@ -104,7 +104,7 @@ main > .wrap:first-child { padding-top: 48px; }
    It is 5 lines at this size and width, at any desktop screen width. */
 .hero-row {
   --row: calc(116 * var(--u));
-  display: grid; grid-template-columns: 450fr 60fr 650fr; align-items: start;
+  display: grid; grid-template-columns: 350fr 60fr 750fr; align-items: start;
 }
 .hero-text {
   grid-column: 1; margin: -.43em 0 -.37em;
