@@ -169,9 +169,9 @@ main > .wrap:first-child { padding-top: 48px; }
 
 .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px; margin-top: 24px; align-items: start; }
 .member-card { display: block; text-decoration: none; color: var(--text); }
-.member-card-photo { display: block; width: 100%; height: auto; margin-bottom: 12px; }
+.member-card-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; margin-bottom: 12px; }
 .member-card-initials {
-  display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 5; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; margin-bottom: 12px;
   background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 300; font-size: 3rem;
 }
 .member-card h3 { margin: 0; }
