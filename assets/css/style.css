@@ -102,7 +102,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .hero-row { display: grid; grid-template-columns: 513fr 41fr 417fr 22fr 167fr; align-items: start; }
 .hero-text {
   grid-column: 1; margin: -.45em 0 0;
-  color: var(--accent); font-size: max(16px, calc(21 * var(--u))); line-height: 1.3;
+  color: var(--accent); font-size: max(15px, calc(18 * var(--u))); line-height: 1.35;
   text-align: justify; hyphens: auto;
 }
 .hero-image { grid-column: 3; display: block; width: 100%; aspect-ratio: 417 / 135; object-fit: cover; }
@@ -126,7 +126,7 @@ main > .wrap:first-child { padding-top: 48px; }
   .hero-row { grid-template-columns: 1fr; gap: 24px; }
   .hero-text, .hero-image, .hero-nav { grid-column: 1; margin: 0; }
   .hero-nav { order: -1; flex-direction: row; gap: 24px; font-size: 1.6rem; }
-  .hero-text { font-size: 1.05rem; }
+  .hero-text { font-size: 1rem; }
 }
 
 .section { padding-top: 56px; }

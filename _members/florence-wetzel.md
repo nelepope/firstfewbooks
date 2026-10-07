@@ -1,5 +1,6 @@
 ---
 name: Florence Wetzel
+photo: /assets/images/members/florence-wetzel.jpg
 substack: florencewetzel108
 links:
   - label: Linktree
