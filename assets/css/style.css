@@ -230,3 +230,5 @@ main > .wrap:first-child { padding-top: 48px; }
 .event h3 a { color: var(--text); text-decoration: none; }
 .event h3 a:hover { color: var(--accent); }
 .event p { margin: .2em 0 0; }
+.rule-heading a { color: inherit; text-decoration: none; }
+.event-list-past { opacity: .7; }

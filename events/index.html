@@ -1,0 +1,31 @@
+---
+layout: default
+title: Events
+---
+{% assign today = site.time | date: "%Y-%m-%d" %}
+{% if site.data.events %}{% assign events = site.data.events | sort: "date" %}{% else %}{% assign events = "" | split: "" %}{% endif %}
+<div class="wrap">
+  <h1>Events</h1>
+
+  <ul class="event-list">
+    {% for event in events %}
+      {% assign day = event.date | date: "%Y-%m-%d" %}
+      {% if day >= today %}{% include event.html event=event %}{% assign upcoming = true %}{% endif %}
+    {% endfor %}
+  </ul>
+  {% unless upcoming %}<p class="coming-soon">Coming soon</p>{% endunless %}
+
+  {% assign past = "" | split: "" %}
+  {% for event in events reversed %}
+    {% assign day = event.date | date: "%Y-%m-%d" %}
+    {% if day < today %}{% assign past = past | push: event %}{% endif %}
+  {% endfor %}
+  {% if past.size > 0 %}
+    <section class="section">
+      <h2 class="rule-heading">Past events</h2>
+      <ul class="event-list event-list-past">
+        {% for event in past %}{% include event.html event=event %}{% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</div>

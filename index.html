@@ -26,9 +26,10 @@ home: true
 
 {% assign today = site.time | date: "%Y-%m-%d" %}
 <section class="section wrap">
-  <h2 class="rule-heading">Events</h2>
+  <h2 class="rule-heading"><a href="{{ '/events/' | relative_url }}">Events</a></h2>
   <ul class="event-list">
-    {% for event in site.data.events %}
+    {% if site.data.events %}{% assign events = site.data.events | sort: "date" %}{% else %}{% assign events = "" | split: "" %}{% endif %}
+    {% for event in events %}
       {% assign day = event.date | date: "%Y-%m-%d" %}
       {% if day >= today %}{% include event.html event=event %}{% assign upcoming = true %}{% endif %}
     {% endfor %}
