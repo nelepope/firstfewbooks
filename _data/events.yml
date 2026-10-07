@@ -1,0 +1,9 @@
+# Upcoming events, shown on the home page. Past events disappear on their own.
+# Copy this block for each event (only title and date are required):
+#
+# - title: Open reading night
+#   date: 2026-11-14
+#   time: 7pm
+#   place: The Owl Bookshop, Kentish Town
+#   description: Members read new work. All welcome.
+#   url: https://example.com/tickets

@@ -1,0 +1,11 @@
+<li class="event">
+  <time class="event-date" datetime="{{ include.event.date | date: '%Y-%m-%d' }}">
+    <span class="event-day">{{ include.event.date | date: "%-d" }}</span>
+    <span class="event-month">{{ include.event.date | date: "%b" }}</span>
+  </time>
+  <div>
+    <h3>{% if include.event.url %}<a href="{{ include.event.url }}" target="_blank" rel="noopener">{{ include.event.title }}</a>{% else %}{{ include.event.title }}{% endif %}</h3>
+    <p class="meta">{% if include.event.time %}{{ include.event.time }}{% endif %}{% if include.event.time and include.event.place %} · {% endif %}{% if include.event.place %}{{ include.event.place }}{% endif %}</p>
+    {% if include.event.description %}<p>{{ include.event.description }}</p>{% endif %}
+  </div>
+</li>

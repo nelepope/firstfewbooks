@@ -107,13 +107,14 @@ main > .wrap:first-child { padding-top: 48px; }
    It is 5 lines at this size and width, at any desktop screen width. */
 .hero-row {
   --row: calc(116 * var(--u));
-  display: grid; grid-template-columns: 350fr 60fr 750fr; align-items: start;
+  display: grid; grid-template-columns: 350fr 453fr 357fr; align-items: start;
 }
 .hero-text {
   grid-column: 1; margin: -.43em 0 -.37em;
   color: var(--accent); font-size: calc(18 * var(--u)); line-height: 1.45;
   text-align: justify; hyphens: auto;
 }
+/* The photo keeps the mockup's crop (1600 × 520) at the paragraph's height. */
 .hero-image { grid-column: 3; display: block; width: 100%; height: var(--row); object-fit: cover; }
 
 .rule-heading {
@@ -217,3 +218,16 @@ main > .wrap:first-child { padding-top: 48px; }
 .link-domain { color: var(--muted); font-size: 1rem; overflow-wrap: anywhere; }
 .link-arrow { margin-left: auto; font-size: 1.2rem; }
 .link-list a:hover .link-label { font-style: italic; }
+
+/* Events */
+.event-list { list-style: none; padding: 0; margin: 0; }
+.event-list:empty { display: none; }
+.event { display: flex; gap: 24px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.event:first-child { border-top: 1px solid var(--line); }
+.event-date { flex: 0 0 64px; display: flex; flex-direction: column; align-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 300; text-transform: uppercase; line-height: 1; }
+.event-day { font-size: 2.4rem; }
+.event-month { font-size: 1rem; letter-spacing: .05em; margin-top: 4px; }
+.event h3 { margin: 0 0 .2em; }
+.event h3 a { color: var(--text); text-decoration: none; }
+.event h3 a:hover { color: var(--accent); }
+.event p { margin: .2em 0 0; }
