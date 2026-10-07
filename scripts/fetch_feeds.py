@@ -24,17 +24,17 @@ RELAY = "https://api.rss2json.com/v1/api.json?rss_url="
 def front_matter(path):
     text = path.read_text(encoding="utf-8")
     match = re.match(r"---\n(.*?)\n---", text, re.S)
-    fields = {"hide": []}
-    in_hide = False
+    fields = {"hide": [], "mute": []}
+    in_list = None
     for line in (match.group(1) if match else "").splitlines():
         m = re.match(r"^(substack|feed):\s*(\S+)", line)
         if m:
             fields[m.group(1)] = m.group(2).strip("\"'")
         item = re.match(r"^\s+-\s*(.+)", line)
-        if in_hide and item:
-            fields["hide"].append(item.group(1).strip().strip("\"'").lower())
+        if in_list and item:
+            fields[in_list].append(item.group(1).strip().strip("\"'").lower())
         else:
-            in_hide = line.startswith("hide:")
+            in_list = next((k for k in ("hide", "mute") if line.startswith(k + ":")), None)
     return fields
 
 
@@ -98,7 +98,7 @@ def read_feed_via_relay(url):
     ) for item in data.get("items", [])]
 
 
-def to_posts(items, author, hide=()):
+def to_posts(items, author, hide=(), mute=()):
     posts = []
     for title, link, date, excerpt, image in items:
         title = plain_text(title)
@@ -110,6 +110,7 @@ def to_posts(items, author, hide=()):
             "date": date.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "excerpt": plain_text(excerpt)[:300],
             "image": image,
+            "muted": title.lower() in mute or link.rstrip("/").lower() in mute,
             "author": author,
         })
     return posts[:POSTS_PER_MEMBER]
@@ -132,7 +133,7 @@ def main():
                 # "::warning::" makes the message show up on the GitHub Actions run.
                 print(f"::warning::{path.stem}: feed skipped ({error}; relay: {relay_error})")
                 continue
-        posts += to_posts(items, path.stem, fields["hide"])
+        posts += to_posts(items, path.stem, fields["hide"], fields["mute"])
         print(f"{path.stem}: ok")
 
     posts.sort(key=lambda post: post["date"], reverse=True)

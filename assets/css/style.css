@@ -232,3 +232,4 @@ main > .wrap:first-child { padding-top: 48px; }
 .event p { margin: .2em 0 0; }
 .rule-heading a { color: inherit; text-decoration: none; }
 .event-list-past { opacity: .7; }
+.post-image-muted { filter: saturate(.35) sepia(.2) brightness(.97); }

@@ -1,7 +1,7 @@
 {% assign author = site.members | where: "slug", include.post.author | first %}
 <article class="post-card">
   <a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener">
-    {% if include.post.image %}<img class="post-image" src="{{ include.post.image }}" alt="" loading="lazy">{% endif %}
+    {% if include.post.image %}<img class="post-image{% if include.post.muted %} post-image-muted{% endif %}" src="{{ include.post.image }}" alt="" loading="lazy">{% endif %}
     <h3>{{ include.post.title }}</h3>
   </a>
   <p class="meta">
