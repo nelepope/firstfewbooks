@@ -211,3 +211,16 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 
 .coming-soon { font-family: var(--font-display); font-weight: 300; font-style: italic; text-transform: uppercase; letter-spacing: -.05em; color: var(--accent); font-size: clamp(1.6rem, 3vw, 2.4rem); margin: .5em 0 2em; }
+
+/* Writer profile: one row of posts, then their links */
+.post-row { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 760px) { .post-row { grid-template-columns: 1fr; } }
+.link-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.link-list a {
+  display: flex; align-items: baseline; gap: 16px; padding: 14px 0;
+  border-bottom: 1px solid var(--line); text-decoration: none; color: var(--accent);
+}
+.link-label { font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: -.05em; font-size: 1.4rem; }
+.link-domain { color: var(--muted); font-size: 1rem; overflow-wrap: anywhere; }
+.link-arrow { margin-left: auto; font-size: 1.2rem; }
+.link-list a:hover .link-label { font-style: italic; }

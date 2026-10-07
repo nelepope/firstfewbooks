@@ -9,17 +9,6 @@ layout: default
     <div>
       <h1>{{ page.name }}</h1>
       {% if page.tagline %}<p class="tagline">{{ page.tagline }}</p>{% endif %}
-      {% if page.substack or page.links %}
-        <p class="links">
-          {% if page.substack %}
-            {% assign sub = page.substack | remove: "@" %}
-            {% unless sub contains "." %}{% assign sub = sub | append: ".substack.com" %}{% endunless %}
-            {% unless sub contains "://" %}{% assign sub = sub | prepend: "https://" %}{% endunless %}
-            <a href="{{ sub }}" target="_blank" rel="noopener">Substack</a>
-          {% endif %}
-          {% for link in page.links %}<a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% endfor %}
-        </p>
-      {% endif %}
     </div>
   </header>
 
@@ -44,10 +33,25 @@ layout: default
 
   {% if posts.size > 0 %}
     <section class="section">
-      <h2>Blog posts</h2>
-      <div class="post-grid">
-        {% for post in posts %}{% include post-card.html post=post %}{% endfor %}
+      <h2 class="rule-heading">Latest blogs</h2>
+      <div class="post-grid post-row">
+        {% for post in posts limit: 3 %}{% include post-card.html post=post %}{% endfor %}
       </div>
+    </section>
+  {% endif %}
+
+  {% if page.substack or page.links %}
+    <section class="section">
+      <h2 class="rule-heading">Links</h2>
+      <ul class="link-list">
+        {% if page.substack %}
+          {% assign sub = page.substack | remove: "@" %}
+          {% unless sub contains "." %}{% assign sub = sub | append: ".substack.com" %}{% endunless %}
+          {% unless sub contains "://" %}{% assign sub = sub | prepend: "https://" %}{% endunless %}
+          {% include external-link.html label="Substack" url=sub %}
+        {% endif %}
+        {% for link in page.links %}{% include external-link.html label=link.label url=link.url %}{% endfor %}
+      </ul>
     </section>
   {% endif %}
 

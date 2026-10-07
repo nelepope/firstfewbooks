@@ -1,0 +1,3 @@
+{% comment %}Shows the address without https://, www. or a trailing slash.{% endcomment %}
+{% assign domain = include.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | join: "/" %}
+<li><a href="{{ include.url }}" target="_blank" rel="noopener"><span class="link-label">{{ include.label }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a></li>
