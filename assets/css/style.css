@@ -142,7 +142,7 @@ main > .wrap:first-child { padding-top: 48px; }
 
 /* Posts */
 .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-.post-grid .post-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.post-grid .post-card { padding: 0; }
 .post-list .post-card { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .post-card h3 { margin: .2em 0 .4em; }
 .post-link { color: var(--text); text-decoration: none; }
