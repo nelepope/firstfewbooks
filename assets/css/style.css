@@ -147,7 +147,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .post-card h3 { margin: .2em 0 .4em; }
 .post-link { color: var(--text); text-decoration: none; }
 .post-link:hover h3 { color: var(--accent); }
-.post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 14px; background: var(--cover); }
+.post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 14px; }
 .post-grid .post-card { overflow: hidden; }
 .post-list .post-image { max-width: 320px; }
 .post-card p:last-child { margin-bottom: 0; color: var(--muted); }
@@ -232,4 +232,6 @@ main > .wrap:first-child { padding-top: 48px; }
 .event p { margin: .2em 0 0; }
 .rule-heading a { color: inherit; text-decoration: none; }
 .event-list-past { opacity: .7; }
-.post-image-muted { filter: saturate(.35) sepia(.2) brightness(.97); }
+/* Post pictures come from Substack; tint them sepia to sit with the site's colours. */
+.post-image { filter: sepia(.85) saturate(.9); }
+.post-image-muted { filter: sepia(.85) saturate(.6); }
