@@ -17,5 +17,17 @@
     {{ content }}
   </main>
   {% include footer.html %}
+  {% if page.home %}
+  <script>
+    // Hide the header logo while the big title is on screen.
+    (function () {
+      var title = document.querySelector('.hero-title');
+      if (!title || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        document.body.classList.toggle('title-visible', entries[0].isIntersecting);
+      }, { rootMargin: '-68px 0px 0px 0px' }).observe(title);
+    })();
+  </script>
+  {% endif %}
 </body>
 </html>

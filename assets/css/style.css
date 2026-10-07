@@ -51,7 +51,10 @@ main > .wrap:first-child { padding-top: 48px; }
 .back { margin-top: 48px; }
 
 /* Header */
-.site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--bg); }
+/* On the home page the small logo hides while the big title is on screen (see default.html). */
+.logo { transition: opacity .25s, visibility .25s; }
+.title-visible .logo { opacity: 0; visibility: hidden; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
 .site-nav { display: flex; gap: 28px; }
@@ -119,7 +122,7 @@ main > .wrap:first-child { padding-top: 48px; }
   font-size: max(1.5rem, calc(34 * var(--u))); margin: 0 0 28px -.28em;
 }
 .rule-heading::after { content: ""; flex: 1; height: 1px; background: var(--rule); margin-right: calc(52 * var(--u)); }
-.hero + .section { padding-top: max(32px, calc(38 * var(--u))); }
+.hero + .section { padding-top: max(48px, calc(80 * var(--u))); }
 
 @media (max-width: 1000px) {
   .hero { padding-top: 40px; }
