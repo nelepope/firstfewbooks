@@ -176,7 +176,12 @@ main > .wrap:first-child { padding-top: 48px; }
 .member-card .avatar { width: 96px; height: 96px; margin: 0 auto 16px; font-size: 2rem; }
 .member-card p { color: var(--muted); margin: 0; font-size: .95rem; }
 
-.member-header { display: flex; align-items: center; gap: 28px; margin-bottom: 32px; }
+.member-header { margin-bottom: 32px; }
+.member-intro { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 40px; align-items: start; }
+.member-intro-text-only { grid-template-columns: minmax(0, 720px); }
+.member-photo { display: block; width: 100%; height: auto; }
+.member-intro .prose p:first-child { margin-top: 0; }
+@media (max-width: 760px) { .member-intro { grid-template-columns: 1fr; gap: 24px; } .member-photo { max-width: 420px; } }
 .member-header h1 { margin-bottom: .2em; }
 .tagline { color: var(--muted); margin: 0 0 .5em; font-size: 1.1rem; }
 .links { display: flex; flex-wrap: wrap; gap: 16px; margin: 0; }
