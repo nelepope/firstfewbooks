@@ -9,13 +9,16 @@ import html
 import json
 import re
 import sys
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PER_MEMBER = 10
+RELAY = "https://api.rss2json.com/v1/api.json?rss_url="
 
 
 def front_matter(path):
@@ -64,21 +67,48 @@ def fetch(url):
         return response.read()
 
 
-def parse(xml, author, hide=()):
-    posts = []
-    for item in ET.fromstring(xml).iter("item"):
-        link = (item.findtext("link") or "").strip()
+def read_feed(url):
+    """Return the feed's items as (title, link, date, excerpt, image) tuples."""
+    items = []
+    for item in ET.fromstring(fetch(url)).iter("item"):
         pub_date = item.findtext("pubDate")
-        title = plain_text(item.findtext("title"))
-        if not link or not pub_date or title.lower() in hide or link.rstrip("/").lower() in hide:
-            continue
         enclosure = item.find("enclosure")
         image = enclosure.get("url") if enclosure is not None and "image" in (enclosure.get("type") or "") else None
+        items.append((
+            item.findtext("title"),
+            (item.findtext("link") or "").strip(),
+            parsedate_to_datetime(pub_date) if pub_date else None,
+            item.findtext("description"),
+            image,
+        ))
+    return items
+
+
+def read_feed_via_relay(url):
+    """Substack blocks requests from GitHub's servers, so fetch through rss2json instead."""
+    data = json.loads(fetch(RELAY + urllib.parse.quote(url, safe="")))
+    if data.get("status") != "ok":
+        raise RuntimeError(data.get("message", "relay error"))
+    return [(
+        item.get("title"),
+        (item.get("link") or "").strip(),
+        datetime.strptime(item["pubDate"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc) if item.get("pubDate") else None,
+        item.get("description"),
+        (item.get("enclosure") or {}).get("link") or item.get("thumbnail") or None,
+    ) for item in data.get("items", [])]
+
+
+def to_posts(items, author, hide=()):
+    posts = []
+    for title, link, date, excerpt, image in items:
+        title = plain_text(title)
+        if not link or not date or title.lower() in hide or link.rstrip("/").lower() in hide:
+            continue
         posts.append({
             "title": title,
             "url": link,
-            "date": parsedate_to_datetime(pub_date).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "excerpt": plain_text(item.findtext("description"))[:300],
+            "date": date.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "excerpt": plain_text(excerpt)[:300],
             "image": image,
             "author": author,
         })
@@ -93,11 +123,17 @@ def main():
         if not url:
             continue
         try:
-            posts += parse(fetch(url), path.stem, fields["hide"])
-            print(f"{path.stem}: ok")
+            items = read_feed(url)
         except Exception as error:
-            # "::warning::" makes the message show up on the GitHub Actions run.
-            print(f"::warning::{path.stem}: feed skipped ({error})")
+            try:
+                items = read_feed_via_relay(url)
+                print(f"{path.stem}: direct fetch failed ({error}), used relay")
+            except Exception as relay_error:
+                # "::warning::" makes the message show up on the GitHub Actions run.
+                print(f"::warning::{path.stem}: feed skipped ({error}; relay: {relay_error})")
+                continue
+        posts += to_posts(items, path.stem, fields["hide"])
+        print(f"{path.stem}: ok")
 
     posts.sort(key=lambda post: post["date"], reverse=True)
     out = ROOT / "_data" / "feed.json"
