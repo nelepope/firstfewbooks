@@ -93,7 +93,8 @@ def main():
             posts += parse(fetch(url), path.stem, fields["hide"])
             print(f"{path.stem}: ok")
         except Exception as error:
-            print(f"{path.stem}: skipped ({error})", file=sys.stderr)
+            # "::warning::" makes the message show up on the GitHub Actions run.
+            print(f"::warning::{path.stem}: feed skipped ({error})")
 
     posts.sort(key=lambda post: post["date"], reverse=True)
     out = ROOT / "_data" / "feed.json"
