@@ -104,17 +104,16 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 /* The paragraph and photo share one height (--row): the paragraph is trimmed so its first
    line's capitals sit on the photo's top edge and its last baseline on the bottom edge.
-   It is 5 lines at this size and width, at any desktop screen width. */
+   It is 3 lines at this size and width, at any desktop screen width. */
 .hero-row {
-  --row: calc(116 * var(--u));
-  display: grid; grid-template-columns: 350fr 453fr 357fr; align-items: start;
+  --row: calc(70.4 * var(--u));
+  display: grid; grid-template-columns: 640fr 15fr 505fr; align-items: start;
 }
 .hero-text {
-  grid-column: 1; margin: -.43em 0 -.37em;
-  color: var(--accent); font-size: calc(18 * var(--u)); line-height: 1.45;
+  grid-column: 1; margin: -.405em 0 -.346em;
+  color: var(--accent); font-size: calc(20.4 * var(--u)); line-height: 1.4;
   text-align: justify; hyphens: auto;
 }
-/* The photo keeps the mockup's crop (1600 × 520) at the paragraph's height. */
 .hero-image { grid-column: 3; display: block; width: 100%; height: var(--row); object-fit: cover; }
 
 .rule-heading {
@@ -129,7 +128,7 @@ main > .wrap:first-child { padding-top: 48px; }
   .hero { padding-top: 40px; }
   .hero-row { grid-template-columns: 1fr; gap: 24px; }
   .hero-text, .hero-image { grid-column: 1; margin: 0; }
-  .hero-image { height: auto; aspect-ratio: 417 / 135; }
+  .hero-image { height: auto; aspect-ratio: 4 / 1; }
   .hero-text { font-size: 1rem; }
 }
 
