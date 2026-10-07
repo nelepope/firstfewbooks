@@ -107,7 +107,7 @@ main > .wrap:first-child { padding-top: 48px; }
    It is 3 lines at this size and width, at any desktop screen width. */
 .hero-row {
   --row: calc(70.4 * var(--u));
-  display: grid; grid-template-columns: 640fr 15fr 505fr; align-items: start;
+  display: grid; grid-template-columns: 701.5fr 15fr 443.5fr; align-items: start;
 }
 .hero-text {
   grid-column: 1; margin: -.405em 0 -.346em;
