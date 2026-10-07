@@ -56,7 +56,10 @@ def plain_text(value):
 
 
 def fetch(url):
-    request = urllib.request.Request(url, headers={"User-Agent": "firstfewbooks.com feed reader"})
+    request = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36 (+https://firstfewbooks.com)",
+        "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+    })
     with urllib.request.urlopen(request, timeout=20) as response:
         return response.read()
 
