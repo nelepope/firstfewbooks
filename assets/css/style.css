@@ -209,3 +209,5 @@ main > .wrap:first-child { padding-top: 48px; }
   .book-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .book-card .cover-placeholder { font-size: 1rem; }
 }
+
+.coming-soon { font-family: var(--font-display); font-weight: 300; font-style: italic; text-transform: uppercase; letter-spacing: -.05em; color: var(--accent); font-size: clamp(1.6rem, 3vw, 2.4rem); margin: .5em 0 2em; }

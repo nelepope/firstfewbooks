@@ -2,15 +2,17 @@
 layout: default
 title: Shop
 ---
+{% assign books = site.books | sort: "date" | reverse %}
 <div class="wrap">
   <h1>Shop</h1>
-  <p class="lede">Books by members of {{ site.title }}. Each link takes you to wherever that book is sold.</p>
-  <div class="book-grid">
-    {% assign books = site.books | sort: "date" | reverse %}
-    {% for book in books %}
-      {% include book-card.html book=book %}
-    {% else %}
-      <p class="meta">Members' books are coming soon.</p>
-    {% endfor %}
-  </div>
+  {% if books.size > 0 %}
+    <p class="lede">Books by members of {{ site.title }}. Each link takes you to wherever that book is sold.</p>
+    <div class="book-grid">
+      {% for book in books %}
+        {% include book-card.html book=book %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="coming-soon">Coming soon</p>
+  {% endif %}
 </div>
