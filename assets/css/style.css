@@ -99,14 +99,23 @@ main > .wrap:first-child { padding-top: 48px; }
   line-height: 1; letter-spacing: -.13em; white-space: nowrap;
   margin: 0 0 calc(3 * var(--u)) -.113em;
 }
-.hero-row { display: grid; grid-template-columns: 513fr 41fr 417fr 22fr 167fr; align-items: start; }
+/* The paragraph, photo and menu share one height (--row), and each is trimmed so its
+   first line's capitals sit on the top edge and its last line's baseline on the bottom.
+   The paragraph is 5 lines at this size and width, at any desktop screen width. */
+.hero-row {
+  --row: calc(116 * var(--u));
+  display: grid; grid-template-columns: 450fr 60fr 460fr 22fr 167fr; align-items: start;
+}
 .hero-text {
-  grid-column: 1; margin: -.45em 0 0;
-  color: var(--accent); font-size: max(15px, calc(18 * var(--u))); line-height: 1.35;
+  grid-column: 1; margin: -.43em 0 -.37em;
+  color: var(--accent); font-size: calc(18 * var(--u)); line-height: 1.45;
   text-align: justify; hyphens: auto;
 }
-.hero-image { grid-column: 3; display: block; width: 100%; aspect-ratio: 417 / 135; object-fit: cover; }
-.hero-nav { grid-column: 5; display: flex; flex-direction: column; align-items: flex-end; margin: calc(-4 * var(--u)) .1em 0 0; font-size: calc(46.6 * var(--u)); }
+.hero-image { grid-column: 3; display: block; width: 100%; height: var(--row); object-fit: cover; }
+.hero-nav {
+  grid-column: 5; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end;
+  font-size: calc(40 * var(--u)); height: calc(var(--row) + .29em); margin: -.04em .1em -.25em 0;
+}
 .hero-nav a {
   font-family: var(--font-display); font-weight: 300; text-transform: uppercase;
   line-height: 1; letter-spacing: -.12em; color: var(--accent); text-decoration: none;
@@ -121,11 +130,12 @@ main > .wrap:first-child { padding-top: 48px; }
 .rule-heading::after { content: ""; flex: 1; height: 1px; background: var(--rule); margin-right: calc(52 * var(--u)); }
 .hero + .section { padding-top: max(32px, calc(38 * var(--u))); }
 
-@media (max-width: 860px) {
+@media (max-width: 1000px) {
   .hero { padding-top: 40px; }
   .hero-row { grid-template-columns: 1fr; gap: 24px; }
   .hero-text, .hero-image, .hero-nav { grid-column: 1; margin: 0; }
-  .hero-nav { order: -1; flex-direction: row; gap: 24px; font-size: 1.6rem; }
+  .hero-nav { order: -1; flex-direction: row; gap: 24px; font-size: 1.6rem; height: auto; }
+  .hero-image { height: auto; aspect-ratio: 417 / 135; }
   .hero-text { font-size: 1rem; }
 }
 
