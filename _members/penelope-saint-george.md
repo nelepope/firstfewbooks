@@ -1,0 +1,13 @@
+---
+name: Penelope Saint-George
+photo: /assets/images/members/penelope-saint-george.jpg
+substack: nelepope
+links:
+  - label: Website
+    url: https://penelopesaintgeorge.com/
+# Posts to leave off the site (title or full link)
+hide:
+  - Selected object writing
+---
+
+Copywriter and essayist based in London, writing about science and culture.

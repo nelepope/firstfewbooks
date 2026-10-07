@@ -21,11 +21,17 @@ POSTS_PER_MEMBER = 10
 def front_matter(path):
     text = path.read_text(encoding="utf-8")
     match = re.match(r"---\n(.*?)\n---", text, re.S)
-    fields = {}
+    fields = {"hide": []}
+    in_hide = False
     for line in (match.group(1) if match else "").splitlines():
         m = re.match(r"^(substack|feed):\s*(\S+)", line)
         if m:
             fields[m.group(1)] = m.group(2).strip("\"'")
+        item = re.match(r"^\s+-\s*(.+)", line)
+        if in_hide and item:
+            fields["hide"].append(item.group(1).strip().strip("\"'").lower())
+        else:
+            in_hide = line.startswith("hide:")
     return fields
 
 
@@ -55,17 +61,18 @@ def fetch(url):
         return response.read()
 
 
-def parse(xml, author):
+def parse(xml, author, hide=()):
     posts = []
     for item in ET.fromstring(xml).iter("item"):
         link = (item.findtext("link") or "").strip()
         pub_date = item.findtext("pubDate")
-        if not link or not pub_date:
+        title = plain_text(item.findtext("title"))
+        if not link or not pub_date or title.lower() in hide or link.rstrip("/").lower() in hide:
             continue
         enclosure = item.find("enclosure")
         image = enclosure.get("url") if enclosure is not None and "image" in (enclosure.get("type") or "") else None
         posts.append({
-            "title": plain_text(item.findtext("title")),
+            "title": title,
             "url": link,
             "date": parsedate_to_datetime(pub_date).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "excerpt": plain_text(item.findtext("description"))[:300],
@@ -78,11 +85,12 @@ def parse(xml, author):
 def main():
     posts = []
     for path in sorted((ROOT / "_members").glob("*.md")):
-        url = feed_url(front_matter(path))
+        fields = front_matter(path)
+        url = feed_url(fields)
         if not url:
             continue
         try:
-            posts += parse(fetch(url), path.stem)
+            posts += parse(fetch(url), path.stem, fields["hide"])
             print(f"{path.stem}: ok")
         except Exception as error:
             print(f"{path.stem}: skipped ({error})", file=sys.stderr)
