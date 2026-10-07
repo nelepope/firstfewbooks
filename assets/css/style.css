@@ -8,7 +8,7 @@
   --accent: #8b0a0a;
   --accent-text: #ffffff;
   --cover: #ece3dc;
-  --font-display: "Italiana", "Didot", serif;
+  --font-display: "Josefin Sans", "Century Gothic", sans-serif;
   --font-body: "EB Garamond", Garamond, Georgia, serif;
   --radius: 4px;
 }
@@ -25,7 +25,7 @@ body {
 
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   text-transform: uppercase;
   color: var(--accent);
   line-height: 1.1;
@@ -52,9 +52,9 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Header */
 .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
 .site-nav { display: flex; gap: 28px; }
-.site-nav a { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
+.site-nav a { font-family: var(--font-display); font-weight: 300; font-size: 1.15rem; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
 .site-nav a:hover, .site-nav a[aria-current] { color: var(--accent); }
 .nav-toggle, .nav-toggle-label { display: none; }
 
@@ -91,7 +91,8 @@ main > .wrap:first-child { padding-top: 48px; }
 .hero .wrap { max-width: 1240px; }
 .hero-title {
   /* Sized so the title spans the full width of the page. */
-  font-size: min(calc((100vw - 40px) / 7.95), 150px);
+  font-size: min(calc((100vw - 40px) / 8.85), 135px);
+  font-weight: 200;
   line-height: 1; letter-spacing: -.01em; white-space: nowrap;
   margin: 0 0 .25em; padding-top: .1em;
 }
@@ -100,12 +101,12 @@ main > .wrap:first-child { padding-top: 48px; }
 .hero-image { display: block; width: 100%; aspect-ratio: 418 / 135; object-fit: cover; }
 .hero-nav { display: flex; flex-direction: column; align-items: flex-end; margin-top: -.15em; }
 .hero-nav a {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-family: var(--font-display); font-weight: 200; text-transform: uppercase;
   font-size: clamp(1.6rem, 3.4vw, 2.8rem); line-height: 1.12; color: var(--accent); text-decoration: none;
 }
 .hero-nav a:hover { font-style: italic; }
 
-.rule-heading { display: flex; align-items: center; gap: 12px; font-style: italic; font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: 28px; }
+.rule-heading { display: flex; align-items: center; gap: 12px; font-style: italic; font-weight: 200; font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: 28px; }
 .rule-heading::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
 @media (max-width: 860px) {
@@ -147,7 +148,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .avatar-lg { width: 120px; height: 120px; }
 .avatar-initials {
   display: flex; align-items: center; justify-content: center;
-  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 400;
+  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 300;
 }
 .avatar-lg.avatar-initials { font-size: 2.4rem; }
 
@@ -174,7 +175,7 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Books */
 .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 32px; margin-top: 24px; }
 .book-card .cover { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 4px; margin-bottom: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-.book-card .cover-placeholder { display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--cover); text-align: center; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; color: var(--accent); font-size: 1.3rem; line-height: 1.2; }
+.book-card .cover-placeholder { display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--cover); text-align: center; font-family: var(--font-display); font-weight: 300; text-transform: uppercase; color: var(--accent); font-size: 1.3rem; line-height: 1.2; }
 .book-card h3 { margin-bottom: .2em; }
 .book-card p { font-size: .95rem; }
 .book-card .button { margin-top: 4px; font-size: .9rem; padding: 8px 16px; }
