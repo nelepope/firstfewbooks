@@ -45,7 +45,7 @@ layout: default
   {% if posts.size > 0 %}
     <section class="section">
       <h2>Blog posts</h2>
-      <div class="post-list">
+      <div class="post-grid">
         {% for post in posts %}{% include post-card.html post=post %}{% endfor %}
       </div>
     </section>
