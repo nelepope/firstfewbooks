@@ -1,9 +1,9 @@
 {% assign author = site.members | where: "slug", include.post.author | first %}
-<article class="post-card">
-  <a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener">
-    {% if include.post.image %}<img class="post-image{% if include.post.muted %} post-image-muted{% endif %}" src="{{ include.post.image }}" alt="" loading="lazy">{% endif %}
-  </a>
-  {% if author %}<p class="post-author"><a href="{{ author.url | relative_url }}">{{ author.name }}</a></p>{% endif %}
+<article class="post-card" data-writer="{{ include.post.author }}">
+  <div class="post-media{% if include.post.image %} has-image{% endif %}">
+    {% if include.post.image %}<a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener"><img class="post-image{% if include.post.muted %} post-image-muted{% endif %}" src="{{ include.post.image }}" alt="" loading="lazy"></a>{% endif %}
+    {% if author %}<p class="post-author"><a href="{{ author.url | relative_url }}">{{ author.name }}</a></p>{% endif %}
+  </div>
   <a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener"><h3>{{ include.post.title }}</h3></a>
   <p class="meta"><time datetime="{{ include.post.date }}">{{ include.post.date | date: "%-d %B %Y" }}</time></p>
   {% if include.post.excerpt != "" %}<p>{{ include.post.excerpt | truncatewords: 30 }}</p>{% endif %}

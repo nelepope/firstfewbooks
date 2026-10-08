@@ -2,9 +2,22 @@
 layout: default
 title: Blog
 ---
+{% assign writers = site.members | sort: "name" %}
 <div class="wrap">
   <h1>Blog</h1>
   <p class="lede">The latest writing from our members. Each post opens on the writer's own Substack.</p>
+
+  <details class="filter" id="writer-filter">
+    <summary>Filter<span class="filter-current"></span></summary>
+    <ul>
+      <li><button type="button" data-writer="">All writers</button></li>
+      {% for writer in writers %}
+        {% assign count = site.data.feed | where: "author", writer.slug | size %}
+        {% if count > 0 %}<li><button type="button" data-writer="{{ writer.slug }}">{{ writer.name }}</button></li>{% endif %}
+      {% endfor %}
+    </ul>
+  </details>
+
   <div class="post-grid">
     {% for post in site.data.feed %}
       {% include post-card.html post=post %}
@@ -13,3 +26,29 @@ title: Blog
     {% endfor %}
   </div>
 </div>
+
+<script>
+  // Show only one writer's posts; the choice is kept in the address (?writer=...) so it can be shared.
+  (function () {
+    var filter = document.getElementById('writer-filter');
+    var label = filter.querySelector('.filter-current');
+    var cards = document.querySelectorAll('.post-grid .post-card');
+    function show(writer) {
+      cards.forEach(function (card) { card.hidden = writer && card.dataset.writer !== writer; });
+      filter.querySelectorAll('button').forEach(function (b) {
+        var on = b.dataset.writer === writer;
+        b.setAttribute('aria-pressed', on);
+        if (on) label.textContent = writer ? ': ' + b.textContent : '';
+      });
+    }
+    filter.addEventListener('click', function (event) {
+      var button = event.target.closest('button');
+      if (!button) return;
+      var writer = button.dataset.writer;
+      show(writer);
+      filter.open = false;
+      history.replaceState(null, '', writer ? '?writer=' + writer : location.pathname);
+    });
+    show(new URLSearchParams(location.search).get('writer') || '');
+  })();
+</script>

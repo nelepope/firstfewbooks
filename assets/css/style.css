@@ -26,7 +26,7 @@ body {
 
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   color: var(--accent);
   line-height: 1.1;
@@ -56,9 +56,9 @@ main > .wrap:first-child { padding-top: 48px; }
 .logo { transition: opacity .25s, visibility .25s; }
 .title-visible .logo { opacity: 0; visibility: hidden; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-.logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
+.logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
 .site-nav { display: flex; gap: 28px; }
-.site-nav a { font-family: var(--font-display); font-weight: 300; font-size: 1.15rem; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
+.site-nav a { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; text-transform: uppercase; color: var(--accent); text-decoration: none; padding-top: .2em; }
 .site-nav a:hover, .site-nav a[aria-current] { color: var(--accent); }
 .nav-toggle, .nav-toggle-label { display: none; }
 
@@ -97,8 +97,8 @@ main > .wrap:first-child { padding-top: 48px; }
 .hero { padding: calc(64 * var(--u)) 0 0; }
 .hero .wrap { max-width: 1200px; }
 .hero-title {
-  font-size: calc(165 * var(--u));
-  font-weight: 300;
+  font-size: calc(161.5 * var(--u));
+  font-weight: 400;
   line-height: 1; letter-spacing: -.13em; white-space: nowrap;
   margin: 0 0 calc(3 * var(--u)) -.113em;
 }
@@ -118,7 +118,7 @@ main > .wrap:first-child { padding-top: 48px; }
 
 .rule-heading {
   display: flex; align-items: center; gap: 12px;
-  font-weight: 300; letter-spacing: -.1em;
+  font-weight: 400; letter-spacing: -.1em;
   font-size: max(1.5rem, calc(34 * var(--u))); margin: 0 0 28px -.1em;
 }
 .rule-heading::after { content: ""; flex: 1; height: 1px; background: var(--rule); margin-right: calc(52 * var(--u)); }
@@ -150,7 +150,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 16px; background: var(--cover); }
 /* Dates, authors and event details: small Josefin capitals, like the nav. */
 .post-card .meta, .event .meta {
-  font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: .02em;
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .02em;
   font-size: .8rem; color: var(--accent); opacity: .75; margin: 0 0 .7em;
 }
 .post-card .meta a, .event .meta a { text-decoration: none; }
@@ -169,7 +169,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .avatar-lg { width: 120px; height: 120px; }
 .avatar-initials {
   display: flex; align-items: center; justify-content: center;
-  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 300;
+  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 400;
 }
 .avatar-lg.avatar-initials { font-size: 2.4rem; }
 
@@ -178,7 +178,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .member-card-photo { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; margin-bottom: 12px; }
 .member-card-initials {
   display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; margin-bottom: 12px;
-  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 300; font-size: 3rem;
+  background: var(--cover); color: var(--accent); font-family: var(--font-display); font-weight: 400; font-size: 3rem;
 }
 .member-card h3 { margin: 0; }
 .member-card:hover h3 { color: var(--accent); }
@@ -198,7 +198,7 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Books */
 .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 32px; margin-top: 24px; }
 .book-card .cover { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 4px; margin-bottom: 14px; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
-.book-card .cover-placeholder { display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--cover); text-align: center; font-family: var(--font-display); font-weight: 300; text-transform: uppercase; color: var(--accent); font-size: 1.3rem; line-height: 1.2; }
+.book-card .cover-placeholder { display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--cover); text-align: center; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; color: var(--accent); font-size: 1.3rem; line-height: 1.2; }
 .book-card h3 { margin-bottom: .2em; }
 .book-card p { font-size: .95rem; }
 .book-card .button { margin-top: 4px; font-size: .9rem; padding: 8px 16px; }
@@ -211,7 +211,7 @@ main > .wrap:first-child { padding-top: 48px; }
   .book-card .cover-placeholder { font-size: 1rem; }
 }
 
-.coming-soon { font-family: var(--font-display); font-weight: 300; font-style: italic; text-transform: uppercase; letter-spacing: -.05em; color: var(--accent); font-size: clamp(1.6rem, 3vw, 2.4rem); margin: .5em 0 2em; }
+.coming-soon { font-family: var(--font-display); font-weight: 400; font-style: italic; text-transform: uppercase; letter-spacing: -.05em; color: var(--accent); font-size: clamp(1.6rem, 3vw, 2.4rem); margin: .5em 0 2em; }
 
 /* Writer profile: one row of posts, then their links */
 .post-row { grid-template-columns: repeat(3, 1fr); }
@@ -221,7 +221,7 @@ main > .wrap:first-child { padding-top: 48px; }
   display: flex; align-items: baseline; gap: 16px; padding: 14px 0;
   border-bottom: 1px solid var(--line); text-decoration: none; color: var(--accent);
 }
-.link-label { font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: -.05em; font-size: 1.4rem; }
+.link-label { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: -.05em; font-size: 1.4rem; }
 .link-domain { color: var(--muted); font-size: 1rem; overflow-wrap: anywhere; }
 .link-arrow { margin-left: auto; font-size: 1.2rem; }
 .link-list a:hover .link-label { font-style: italic; }
@@ -230,7 +230,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .event-list { list-style: none; padding: 0; margin: 0; }
 .event-list:empty { display: none; }
 .event { display: flex; gap: 32px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--rule); }
-.event-date { flex: 0 0 72px; display: flex; flex-direction: column; align-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 300; text-transform: uppercase; line-height: 1; }
+.event-date { flex: 0 0 72px; display: flex; flex-direction: column; align-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 400; text-transform: uppercase; line-height: 1; }
 .event-day { font-size: 3rem; letter-spacing: -.05em; }
 .event-month { font-size: .9rem; letter-spacing: .05em; margin-top: 6px; }
 .event h3 { margin: .15em 0 .35em; color: var(--accent); font-size: 1.35rem; line-height: 1.2; }
@@ -247,10 +247,30 @@ main > .wrap:first-child { padding-top: 48px; }
 
 /* Writer's name on post cards: a small red label */
 .post-author { margin: 0 0 .6em; line-height: 1; }
+/* With a picture, the name sits on its top-left corner. */
+.post-media { position: relative; }
+.post-media.has-image .post-author { position: absolute; top: 0; left: 0; margin: 0; }
 .post-author a {
   display: inline-block; padding: .4em .6em .25em; background: var(--accent); color: var(--bg);
-  font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: .03em;
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em;
   font-size: .8rem; text-decoration: none;
 }
 .post-author a:hover { font-style: italic; }
 .member .post-author { display: none; }
+
+/* Blog filter: a button that opens a list of writers */
+.filter { position: relative; display: inline-block; margin: 0 0 32px; z-index: 5; }
+.filter summary {
+  list-style: none; cursor: pointer; padding: .55em 1em .4em; border: 1px solid var(--accent); color: var(--accent);
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; font-size: .9rem;
+}
+.filter summary::-webkit-details-marker { display: none; }
+.filter summary::after { content: " ▾"; }
+.filter[open] summary, .filter summary:hover { background: var(--accent); color: var(--bg); }
+.filter ul { position: absolute; top: 100%; left: 0; min-width: 100%; list-style: none; margin: 4px 0 0; padding: 6px 0; background: var(--bg); border: 1px solid var(--accent); white-space: nowrap; }
+.filter button {
+  display: block; width: 100%; text-align: left; padding: .5em 1em .35em; border: 0; background: none; cursor: pointer; color: var(--accent);
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; font-size: .9rem;
+}
+.filter button:hover, .filter button[aria-pressed="true"] { font-style: italic; background: var(--cover); }
+.post-card[hidden] { display: none; }
