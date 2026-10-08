@@ -247,9 +247,6 @@ main > .wrap:first-child { padding-top: 48px; }
 
 /* Writer's name on post cards: a small red label */
 .post-author { margin: 0 0 .6em; line-height: 1; }
-/* With a picture, the name sits on its top-left corner. */
-.post-media { position: relative; }
-.post-media.has-image .post-author { position: absolute; top: 0; left: 0; margin: 0; }
 .post-author a {
   display: inline-block; padding: .4em .6em .25em; background: var(--accent); color: var(--bg);
   font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em;

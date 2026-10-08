@@ -1,6 +1,6 @@
 {% assign author = site.members | where: "slug", include.post.author | first %}
 <article class="post-card" data-writer="{{ include.post.author }}">
-  <div class="post-media{% if include.post.image %} has-image{% endif %}">
+  <div class="post-media">
     {% if include.post.image %}<a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener"><img class="post-image{% if include.post.muted %} post-image-muted{% endif %}" src="{{ include.post.image }}" alt="" loading="lazy"></a>{% endif %}
     {% if author %}<p class="post-author"><a href="{{ author.url | relative_url }}">{{ author.name }}</a></p>{% endif %}
   </div>
