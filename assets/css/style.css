@@ -271,3 +271,14 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 .filter button:hover, .filter button[aria-pressed="true"] { font-style: italic; background: var(--cover); }
 .post-card[hidden] { display: none; }
+
+/* Hand and quill in the second O of the title (positions measured from the mockup).
+   .quill covers the O's outline; the back copy is clipped to that circle and sits behind
+   the letter, so the ring hides the wrist; the front copy shows only the feather tip,
+   which crosses over the ring at the top right. */
+.hero-title { position: relative; z-index: 0; }
+.quill-o { position: relative; }
+.quill { position: absolute; left: .0635em; top: .0255em; width: .7325em; height: .7325em; pointer-events: none; }
+.quill-back { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; z-index: -1; }
+.quill img { position: absolute; left: 21.4%; top: -1.26%; width: 74.5%; height: auto; max-width: none; }
+.quill-front { clip-path: polygon(55% -10%, 110% -10%, 110% 40%, 55% 40%); }
