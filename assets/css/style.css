@@ -118,8 +118,8 @@ main > .wrap:first-child { padding-top: 48px; }
 
 .rule-heading {
   display: flex; align-items: center; gap: 12px;
-  font-style: italic; font-weight: 300; letter-spacing: -.1em;
-  font-size: max(1.5rem, calc(34 * var(--u))); margin: 0 0 28px -.28em;
+  font-weight: 300; letter-spacing: -.1em;
+  font-size: max(1.5rem, calc(34 * var(--u))); margin: 0 0 28px -.1em;
 }
 .rule-heading::after { content: ""; flex: 1; height: 1px; background: var(--rule); margin-right: calc(52 * var(--u)); }
 .hero + .section { padding-top: max(48px, calc(80 * var(--u))); }
