@@ -3,3 +3,4 @@ _site/
 .sass-cache/
 .DS_Store
 _data/feed.json
+_data/sheet_events.json

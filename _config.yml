@@ -8,6 +8,9 @@ timezone: Europe/London
 # Lets books with a future publication date show in the shop.
 future: true
 
+# Members' events sheet, published to the web as CSV (see scripts/fetch_events.py).
+events_sheet_csv:
+
 collections:
   members:
     output: true

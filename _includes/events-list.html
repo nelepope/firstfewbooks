@@ -1,0 +1,22 @@
+{% comment %}
+  All events: _data/events.yml (added by hand) plus _data/sheet_events.json (from the Google Sheet).
+  An event counts as upcoming until its end_date (or its date, for one-off events).
+  include.show = "upcoming" or "past".
+{% endcomment %}
+{% assign today = site.time | date: "%Y-%m-%d" %}
+{% comment %}Sort by "YYYY-MM-DD|source|index" keys: dates from events.yml and from the sheet are different types and can't be compared directly.{% endcomment %}
+{% assign keys = "" | split: "" %}
+{% for e in site.data.events %}{% capture k %}{{ e.date | date: "%Y-%m-%d" }}|y|{{ forloop.index0 }}{% endcapture %}{% assign keys = keys | push: k %}{% endfor %}
+{% for e in site.data.sheet_events %}{% capture k %}{{ e.date | date: "%Y-%m-%d" }}|s|{{ forloop.index0 }}{% endcapture %}{% assign keys = keys | push: k %}{% endfor %}
+{% assign keys = keys | sort %}
+{% if include.show == "past" %}{% assign keys = keys | reverse %}{% endif %}
+{% assign shown = 0 %}
+<ul class="event-list{% if include.show == 'past' %} event-list-past{% endif %}">
+  {% for key in keys %}
+    {% assign parts = key | split: "|" %}{% assign i = parts[2] | plus: 0 %}
+    {% if parts[1] == "y" %}{% assign event = site.data.events[i] %}{% else %}{% assign event = site.data.sheet_events[i] %}{% endif %}
+    {% assign until = event.end_date | default: event.date | date: "%Y-%m-%d" %}
+    {% if include.show == "past" and until < today %}{% include event.html event=event %}{% assign shown = shown | plus: 1 %}
+    {% elsif include.show != "past" and until >= today %}{% include event.html event=event %}{% assign shown = shown | plus: 1 %}{% endif %}
+  {% endfor %}
+</ul>

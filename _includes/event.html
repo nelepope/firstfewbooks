@@ -1,11 +1,18 @@
+{% assign e = include.event %}
 <li class="event">
-  <time class="event-date" datetime="{{ include.event.date | date: '%Y-%m-%d' }}">
-    <span class="event-day">{{ include.event.date | date: "%-d" }}</span>
-    <span class="event-month">{{ include.event.date | date: "%b" }}</span>
+  <time class="event-date" datetime="{{ e.date | date: '%Y-%m-%d' }}">
+    <span class="event-day">{{ e.date | date: "%-d" }}</span>
+    <span class="event-month">{{ e.date | date: "%b" }}</span>
   </time>
   <div>
-    <h3>{% if include.event.url %}<a href="{{ include.event.url }}" target="_blank" rel="noopener">{{ include.event.title }}</a>{% else %}{{ include.event.title }}{% endif %}</h3>
-    <p class="meta">{% if include.event.time %}{{ include.event.time }}{% endif %}{% if include.event.time and include.event.place %} · {% endif %}{% if include.event.place %}{{ include.event.place }}{% endif %}</p>
-    {% if include.event.description %}<p>{{ include.event.description }}</p>{% endif %}
+    <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</h3>
+    {% capture when %}{% if e.end_date %}{{ e.date | date: "%-d %b" }} – {{ e.end_date | date: "%-d %b" }}{% endif %}{% endcapture %}
+    {% assign bits = "" | split: "" %}
+    {% if when != "" %}{% assign bits = bits | push: when %}{% endif %}
+    {% if e.time %}{% assign bits = bits | push: e.time %}{% endif %}
+    {% if e.place %}{% assign bits = bits | push: e.place %}{% endif %}
+    {% if bits.size > 0 %}<p class="meta">{{ bits | join: " · " }}</p>{% endif %}
+    {% if e.description %}<p>{{ e.description }}</p>{% endif %}
+    {% if e.host %}<p class="meta">Hosted by {{ e.host }}</p>{% endif %}
   </div>
 </li>

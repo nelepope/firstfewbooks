@@ -7,3 +7,23 @@
 #   place: The Owl Bookshop, Kentish Town
 #   description: Members read new work. All welcome.
 #   url: https://example.com/tickets
+#   end_date: 2026-12-01   # for a course or series: it stays listed until this date
+#   host: Jane Smith
+
+- title: "Digital Wisdom: A Social Media and AI Odyssey"
+  date: 2026-10-06
+  end_date: 2026-11-03
+  time: Tuesdays, 18:30–20:00
+  place: The Exchange, 61 Elgin Avenue, W9 2DB
+  description: For anyone wondering how to find reality, meaning, and depth in a robotic world.
+  url: https://www.modernanxiety.org/odysseys
+  host: College of Modern Anxiety
+
+- title: "GLAM: Games–Language–Art–Meaning"
+  date: 2026-11-10
+  end_date: 2026-12-08
+  time: Tuesdays, 18:00–20:00
+  place: Mayday Rooms, EC4Y 1DH
+  description: An Odyssey for young artists, using games to explore freedom and constraint in language, art and meaning. Led by Ky Osborne.
+  url: https://www.modernanxiety.org/odysseys
+  host: College of Modern Anxiety

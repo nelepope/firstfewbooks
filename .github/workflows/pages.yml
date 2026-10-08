@@ -28,6 +28,8 @@ jobs:
           python-version: "3.12"
       - name: Fetch members' posts
         run: python scripts/fetch_feeds.py
+      - name: Fetch members' events sheet
+        run: python scripts/fetch_events.py
       - uses: actions/configure-pages@v5
       - uses: actions/jekyll-build-pages@v1
       - uses: actions/upload-pages-artifact@v3
