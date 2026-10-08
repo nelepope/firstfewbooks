@@ -9,6 +9,7 @@ import html
 import json
 import re
 import sys
+import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -19,6 +20,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PER_MEMBER = 10
 RELAY = "https://api.rss2json.com/v1/api.json?rss_url="
+# A copy of the posts published with the site (see feed-cache.json at the site root).
+PREVIOUS = "https://firstfewbooks.com/feed-cache.json"
 
 
 def front_matter(path):
@@ -116,25 +119,55 @@ def to_posts(items, author, hide=(), mute=()):
     return posts[:POSTS_PER_MEMBER]
 
 
+def fetch_with_retries(url, attempts=3):
+    """Try the feed directly, then the relay a few times (it sometimes returns a 500)."""
+    errors = []
+    try:
+        return read_feed(url)
+    except Exception as error:
+        errors.append(f"direct: {error}")
+    for attempt in range(attempts):
+        try:
+            return read_feed_via_relay(url)
+        except Exception as error:
+            errors.append(f"relay: {error}")
+            time.sleep(5 * (attempt + 1))
+    raise RuntimeError("; ".join(errors))
+
+
+def previous_posts():
+    """The posts the live site showed last time, so a failed feed doesn't empty a writer's posts."""
+    try:
+        return json.loads(fetch(PREVIOUS))
+    except Exception as error:
+        print(f"::warning::could not load previous posts ({error})")
+        return []
+
+
 def main():
     posts = []
+    previous = None
     for path in sorted((ROOT / "_members").glob("*.md")):
         fields = front_matter(path)
         url = feed_url(fields)
         if not url:
             continue
         try:
-            items = read_feed(url)
+            posts += to_posts(fetch_with_retries(url), path.stem, fields["hide"], fields["mute"])
+            print(f"{path.stem}: ok")
         except Exception as error:
-            try:
-                items = read_feed_via_relay(url)
-                print(f"{path.stem}: direct fetch failed ({error}), used relay")
-            except Exception as relay_error:
-                # "::warning::" makes the message show up on the GitHub Actions run.
-                print(f"::warning::{path.stem}: feed skipped ({error}; relay: {relay_error})")
-                continue
-        posts += to_posts(items, path.stem, fields["hide"], fields["mute"])
-        print(f"{path.stem}: ok")
+            if previous is None:
+                previous = previous_posts()
+            kept = [
+                dict(post, muted=post["title"].lower() in fields["mute"] or post["url"].rstrip("/").lower() in fields["mute"])
+                for post in previous
+                if post.get("author") == path.stem
+                and post["title"].lower() not in fields["hide"]
+                and post["url"].rstrip("/").lower() not in fields["hide"]
+            ]
+            posts += kept
+            # "::warning::" makes the message show up on the GitHub Actions run.
+            print(f"::warning::{path.stem}: feed failed ({error}); kept {len(kept)} posts from the live site")
 
     posts.sort(key=lambda post: post["date"], reverse=True)
     out = ROOT / "_data" / "feed.json"
