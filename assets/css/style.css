@@ -244,3 +244,13 @@ main > .wrap:first-child { padding-top: 48px; }
 .event-list-past { opacity: .7; }
 .post-image-muted { filter: saturate(.35) sepia(.2) brightness(.97); }
 .event:first-child { padding-top: 4px; }
+
+/* Writer's name on post cards: a small red label */
+.post-author { margin: 0 0 .6em; line-height: 1; }
+.post-author a {
+  display: inline-block; padding: .4em .6em .25em; background: var(--accent); color: var(--bg);
+  font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: .03em;
+  font-size: .8rem; text-decoration: none;
+}
+.post-author a:hover { font-style: italic; }
+.member .post-author { display: none; }
