@@ -132,7 +132,7 @@ main > .wrap:first-child { padding-top: 48px; }
   .hero-text { font-size: 1rem; }
 }
 
-.section { padding-top: 56px; }
+.section { padding-top: max(48px, calc(80 * var(--u))); }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
 .section-head h2 { margin: 0; }
 .section-head a { white-space: nowrap; }
@@ -141,16 +141,22 @@ main > .wrap:first-child { padding-top: 48px; }
 .callout p { color: var(--muted); }
 
 /* Posts */
-.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 32px; }
 .post-grid .post-card { padding: 0; }
-.post-list .post-card { padding: 24px 0; border-bottom: 1px solid var(--line); }
-.post-card h3 { margin: .2em 0 .4em; }
-.post-link { color: var(--text); text-decoration: none; }
-.post-link:hover h3 { color: var(--accent); }
-.post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 14px; background: var(--cover); }
+.post-list .post-card { padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.post-card h3 { margin: 0 0 .3em; color: var(--accent); font-size: 1.35rem; line-height: 1.2; }
+.post-link { color: var(--accent); text-decoration: none; }
+.post-link:hover h3 { font-style: italic; }
+.post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 16px; background: var(--cover); }
+/* Dates, authors and event details: small Josefin capitals, like the nav. */
+.post-card .meta, .event .meta {
+  font-family: var(--font-display); font-weight: 300; text-transform: uppercase; letter-spacing: .02em;
+  font-size: .8rem; color: var(--accent); opacity: .75; margin: 0 0 .7em;
+}
+.post-card .meta a, .event .meta a { text-decoration: none; }
 .post-grid .post-card { overflow: hidden; }
 .post-list .post-image { max-width: 320px; }
-.post-card p:last-child { margin-bottom: 0; color: var(--muted); }
+.post-card p:last-child { margin-bottom: 0; color: var(--accent); opacity: .85; font-size: 1.05rem; line-height: 1.45; }
 
 .post-header { margin-bottom: 32px; }
 .byline { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 500; }
@@ -223,15 +229,18 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Events */
 .event-list { list-style: none; padding: 0; margin: 0; }
 .event-list:empty { display: none; }
-.event { display: flex; gap: 24px; align-items: flex-start; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.event:first-child { border-top: 1px solid var(--line); }
-.event-date { flex: 0 0 64px; display: flex; flex-direction: column; align-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 300; text-transform: uppercase; line-height: 1; }
-.event-day { font-size: 2.4rem; }
-.event-month { font-size: 1rem; letter-spacing: .05em; margin-top: 4px; }
-.event h3 { margin: 0 0 .2em; }
-.event h3 a { color: var(--text); text-decoration: none; }
-.event h3 a:hover { color: var(--accent); }
-.event p { margin: .2em 0 0; }
+.event { display: flex; gap: 32px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.event-date { flex: 0 0 72px; display: flex; flex-direction: column; align-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 300; text-transform: uppercase; line-height: 1; }
+.event-day { font-size: 3rem; letter-spacing: -.05em; }
+.event-month { font-size: .9rem; letter-spacing: .05em; margin-top: 6px; }
+.event h3 { margin: .15em 0 .35em; color: var(--accent); font-size: 1.35rem; line-height: 1.2; }
+.event h3 a { color: inherit; text-decoration: none; }
+.event h3 a:hover { font-style: italic; }
+.event p { margin: 0; color: var(--accent); }
+.event p:not(.meta) { opacity: .85; font-size: 1.05rem; line-height: 1.45; max-width: 46em; }
+.event p.meta + p:not(.meta) { margin-top: 0; }
+.event p:not(.meta) + p.meta { margin-top: .7em; margin-bottom: 0; }
 .rule-heading a { color: inherit; text-decoration: none; }
 .event-list-past { opacity: .7; }
 .post-image-muted { filter: saturate(.35) sepia(.2) brightness(.97); }
+.event:first-child { padding-top: 4px; }
