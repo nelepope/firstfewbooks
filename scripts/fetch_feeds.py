@@ -70,6 +70,18 @@ def fetch(url):
         return response.read()
 
 
+def first_image(html_text):
+    m = re.search(r'<img[^>]+src="([^"]+)"', html_text or "")
+    return html.unescape(m.group(1)) if m else None
+
+
+def relay_image(item):
+    enclosure = item.get("enclosure") or {}
+    if "image" in (enclosure.get("type") or "") and enclosure.get("link"):
+        return enclosure["link"]
+    return item.get("thumbnail") or first_image(item.get("content")) or None
+
+
 def read_feed(url):
     """Return the feed's items as (title, link, date, excerpt, image) tuples."""
     items = []
@@ -77,6 +89,8 @@ def read_feed(url):
         pub_date = item.findtext("pubDate")
         enclosure = item.find("enclosure")
         image = enclosure.get("url") if enclosure is not None and "image" in (enclosure.get("type") or "") else None
+        # Podcast posts carry their audio as the enclosure, so fall back to the post's first picture.
+        image = image or first_image(item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded"))
         items.append((
             item.findtext("title"),
             (item.findtext("link") or "").strip(),
@@ -97,7 +111,7 @@ def read_feed_via_relay(url):
         (item.get("link") or "").strip(),
         datetime.strptime(item["pubDate"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc) if item.get("pubDate") else None,
         item.get("description"),
-        (item.get("enclosure") or {}).get("link") or item.get("thumbnail") or None,
+        relay_image(item),
     ) for item in data.get("items", [])]
 
 
