@@ -284,7 +284,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .quill-front { clip-path: polygon(55% -10%, 110% -10%, 110% 40%, 55% 40%); }
 
 /* Grouped links on a writer's profile (books, interviews, podcasts...) */
-.work-list { list-style: none; padding: 0; margin: 0; columns: 2 420px; column-gap: 48px; }
+.work-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr)); column-gap: 48px; }
 .work-list li { break-inside: avoid; }
 .work-list a {
   display: flex; align-items: baseline; gap: 12px; padding: 10px 0;
@@ -295,3 +295,18 @@ main > .wrap:first-child { padding-top: 48px; }
 .work-list .link-arrow { margin-left: 0; font-size: 1rem; }
 .work-list a:hover .work-title { font-style: italic; }
 @media (max-width: 640px) { .work-list .link-domain { display: none; } }
+
+/* Book synopsis: a box that appears when hovering over (or tabbing to) the title;
+   on touch screens, where there is no hover, it shows under the title instead. */
+.work-list li.has-synopsis { position: relative; }
+.synopsis {
+  display: none; position: absolute; left: 0; top: calc(100% - 1px); z-index: 10; width: min(440px, 88vw); margin: 0;
+  padding: 14px 18px; background: var(--bg); border: 1px solid var(--accent); box-shadow: 0 8px 24px rgba(60, 10, 10, .12);
+  color: var(--accent); font-size: 1rem; line-height: 1.45;
+}
+.has-synopsis:hover .synopsis, .has-synopsis:focus-within .synopsis { display: block; }
+@media (hover: none) {
+  .synopsis { display: block; position: static; width: auto; padding: 0 0 12px; border: 0; box-shadow: none; opacity: .85; font-size: .95rem; }
+  .has-synopsis a { border-bottom: 0; }
+  .has-synopsis { border-bottom: 1px solid var(--rule); }
+}

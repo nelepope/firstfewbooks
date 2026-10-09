@@ -46,7 +46,10 @@ layout: default
       <ul class="work-list">
         {% for link in group.links %}
           {% assign domain = link.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
-          <li><a href="{{ link.url }}" target="_blank" rel="noopener"><span class="work-title">{{ link.title }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a></li>
+          <li{% if link.synopsis %} class="has-synopsis"{% endif %}>
+            <a href="{{ link.url }}" target="_blank" rel="noopener"><span class="work-title">{{ link.title }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a>
+            {% if link.synopsis %}<p class="synopsis">{{ link.synopsis }}</p>{% endif %}
+          </li>
         {% endfor %}
       </ul>
     </section>
