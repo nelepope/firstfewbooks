@@ -1,5 +1,6 @@
 ---
 name: Bryan Kam
+photo: /assets/images/members/bryan-kam.jpg
 substack: www.bryankam.com
 ---
 
