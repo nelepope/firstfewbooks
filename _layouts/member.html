@@ -48,7 +48,7 @@ layout: default
         {% for link in group.links %}
           {% assign domain = link.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
           <li{% if link.synopsis %} class="has-synopsis"{% endif %}>
-            <a href="{{ link.url }}" target="_blank" rel="noopener"><span class="work-title">{{ link.title }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a>
+            <a href="{{ link.url }}" target="_blank" rel="noopener">{% if link.cover %}<img class="work-cover" src="{{ link.cover | relative_url }}" alt="" loading="lazy">{% endif %}<span class="work-title">{{ link.title }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a>
             {% if link.synopsis %}<p class="synopsis">{{ link.synopsis }}</p>{% endif %}
           </li>
         {% endfor %}
