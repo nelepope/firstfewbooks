@@ -302,13 +302,9 @@ main > .wrap:first-child { padding-top: 48px; }
   .has-synopsis { border-bottom: 1px solid var(--rule); }
 }
 
-/* A writer's motif: a black-and-white cutout (transparent PNG) at the top right of their profile. */
+/* A writer's motif: a small black-and-white cutout (transparent PNG) just after their name. */
 .member { position: relative; z-index: 0; }
-.member-motif {
-  position: absolute; top: 8px; right: 20px; z-index: -1; width: min(150px, 14vw); height: auto;
-  pointer-events: none;
-}
-@media (max-width: 760px) { .member-motif { top: 0; right: 0; width: 21vw; opacity: .55; } }
+.member-motif { display: inline-block; height: 1.5em; width: auto; margin: -.3em 0 -.2em .3em; vertical-align: middle; pointer-events: none; }
 .work-cover { flex: none; align-self: center; width: 34px; height: 51px; object-fit: cover; box-shadow: 0 1px 4px rgba(60, 10, 10, .18); }
 .work-list a:has(.work-cover) { align-items: center; padding: 8px 0; }
 
