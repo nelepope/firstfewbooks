@@ -4,6 +4,7 @@ layout: default
 {% assign posts = site.data.feed | where: "author", page.slug %}
 {% assign books = site.books | where: "author", page.slug %}
 <div class="wrap member">
+  {% if page.motif %}<img class="member-motif" src="{{ page.motif | relative_url }}" alt="" aria-hidden="true">{% endif %}
   <header class="member-header">
     {% include avatar.html member=page large=true %}
     <div>

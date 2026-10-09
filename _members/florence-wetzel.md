@@ -1,6 +1,8 @@
 ---
 name: Florence Wetzel
 photo: /assets/images/members/florence-wetzel.jpg
+# Decorative picture at the top of the profile
+motif: /assets/images/motifs/florence-olive.png
 substack: florencewetzel108
 links:
   - label: Instagram
