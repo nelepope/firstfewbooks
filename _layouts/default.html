@@ -7,6 +7,18 @@
   <title>{% if page_title %}{{ page_title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
+  {% comment %}Link previews (iMessage, WhatsApp, Facebook, LinkedIn, X...){% endcomment %}
+  {% capture share_description %}{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 200 }}{% endcapture %}
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{% if page_title %}{{ page_title }} · {% endif %}{{ site.title }}">
+  <meta property="og:description" content="{{ share_description | escape }}">
+  <meta property="og:image" content="{{ '/assets/images/share.jpg' | absolute_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="First Few Books: the title with a hand holding a quill in the O">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:ital,wght@0,300..400;1,400&display=swap" rel="stylesheet">
