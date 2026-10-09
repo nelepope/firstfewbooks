@@ -40,6 +40,18 @@ layout: default
     </section>
   {% endif %}
 
+  {% for group in page.sections %}
+    <section class="section">
+      <h2 class="rule-heading">{{ group.title }}</h2>
+      <ul class="work-list">
+        {% for link in group.links %}
+          {% assign domain = link.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
+          <li><a href="{{ link.url }}" target="_blank" rel="noopener"><span class="work-title">{{ link.title }}</span><span class="link-domain">{{ domain }}</span><span class="link-arrow" aria-hidden="true">&nearr;</span></a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+
   {% if page.substack or page.links %}
     <section class="section">
       <h2 class="rule-heading">Links</h2>
