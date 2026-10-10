@@ -317,3 +317,8 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 .member-links a::after { content: " ↗"; font-size: .85em; }
 .member-links a:hover { font-style: italic; border-color: var(--accent); }
+/* Writers page on phones: two writers per row */
+@media (max-width: 640px) {
+  .member-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+  .member-card h3 { font-size: 1.05rem; }
+}
