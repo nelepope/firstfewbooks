@@ -322,3 +322,5 @@ main > .wrap:first-child { padding-top: 48px; }
   .member-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
   .member-card h3 { font-size: 1.05rem; }
 }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; }
+.site-footer a { color: var(--accent); }
