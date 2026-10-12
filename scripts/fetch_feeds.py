@@ -7,6 +7,7 @@ A feed that fails to load is skipped so one broken link can't stop the site buil
 
 import html
 import json
+import os
 import re
 import sys
 import time
@@ -22,6 +23,11 @@ POSTS_PER_MEMBER = 10
 RELAY = "https://api.rss2json.com/v1/api.json?rss_url="
 # A copy of the posts published with the site (see feed-cache.json at the site root).
 PREVIOUS = "https://firstfewbooks.com/feed-cache.json"
+# A second relay, for feeds the first one can't read.
+RELAY_2 = "https://www.toptal.com/developers/feed2json/convert?url="
+# Posts saved in the repo whenever this script runs on a computer Substack doesn't block
+# (i.e. not on GitHub). The last resort when a feed can't be fetched any other way.
+SEED = ROOT / "_data" / "feed_seed.json"
 
 
 def front_matter(path):
@@ -71,8 +77,15 @@ def fetch(url):
 
 
 def first_image(html_text):
-    m = re.search(r'<img[^>]+src="([^"]+)"', html_text or "")
-    return html.unescape(m.group(1)) if m else None
+    """The first picture in a post, or the thumbnail of its first YouTube video."""
+    text = html_text or ""
+    image = re.search(r'<img[^>]+src="([^"]+)"', text)
+    video = re.search(r'(?:youtube2-|videoId&quot;:&quot;|youtube(?:-nocookie)?\.com/embed/)([A-Za-z0-9_-]{11})', text)
+    if image and (not video or image.start() < video.start()):
+        return html.unescape(image.group(1))
+    if video:
+        return f"https://img.youtube.com/vi/{video.group(1)}/hqdefault.jpg"
+    return html.unescape(image.group(1)) if image else None
 
 
 def relay_image(item):
@@ -115,6 +128,25 @@ def read_feed_via_relay(url):
     ) for item in data.get("items", [])]
 
 
+def read_feed_via_second_relay(url):
+    """feed2json returns the feed as JSON Feed (jsonfeed.org)."""
+    data = json.loads(fetch(RELAY_2 + urllib.parse.quote(url, safe="")))
+    if "items" not in data:
+        raise RuntimeError(str(data)[:100])
+    items = []
+    for item in data["items"]:
+        published = item.get("date_published")
+        date = datetime.fromisoformat(published.replace("Z", "+00:00").replace(".000", "")) if published else None
+        items.append((
+            item.get("title"),
+            (item.get("url") or "").strip(),
+            date,
+            item.get("summary"),
+            item.get("image") or first_image(item.get("content_html")),
+        ))
+    return items
+
+
 def to_posts(items, author, hide=(), mute=()):
     posts = []
     for title, link, date, excerpt, image in items:
@@ -146,6 +178,10 @@ def fetch_with_retries(url, attempts=3):
         except Exception as error:
             errors.append(f"relay: {error}")
             time.sleep(5 * (attempt + 1))
+    try:
+        return read_feed_via_second_relay(url)
+    except Exception as error:
+        errors.append(f"second relay: {error}")
     raise RuntimeError("; ".join(errors))
 
 
@@ -158,9 +194,17 @@ def previous_posts():
         return []
 
 
+def saved_posts():
+    try:
+        return json.loads(SEED.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+
+
 def main():
     posts = []
     previous = None
+    failed = False
     for path in sorted((ROOT / "_members").glob("*.md")):
         fields = front_matter(path)
         url = feed_url(fields)
@@ -170,24 +214,31 @@ def main():
             posts += to_posts(fetch_with_retries(url), path.stem, fields["hide"], fields["mute"])
             print(f"{path.stem}: ok")
         except Exception as error:
+            failed = True
             if previous is None:
                 previous = previous_posts()
+            # Prefer what the live site last showed; if it has nothing for this writer, use the saved copy.
+            source = previous if any(post.get("author") == path.stem for post in previous) else saved_posts()
             kept = [
                 dict(post, muted=post["title"].lower() in fields["mute"] or post["url"].rstrip("/").lower() in fields["mute"])
-                for post in previous
+                for post in source
                 if post.get("author") == path.stem
                 and post["title"].lower() not in fields["hide"]
                 and post["url"].rstrip("/").lower() not in fields["hide"]
             ]
             posts += kept
             # "::warning::" makes the message show up on the GitHub Actions run.
-            print(f"::warning::{path.stem}: feed failed ({error}); kept {len(kept)} posts from the live site")
+            print(f"::warning::{path.stem}: feed failed ({error}); kept {len(kept)} earlier posts")
 
     posts.sort(key=lambda post: post["date"], reverse=True)
     out = ROOT / "_data" / "feed.json"
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(posts, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"{len(posts)} posts written to {out.relative_to(ROOT)}")
+    # Off GitHub, with every feed fetched, refresh the saved copy (commit it with the next change).
+    if not failed and not os.environ.get("GITHUB_ACTIONS"):
+        SEED.write_text(json.dumps(posts, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"saved copy updated: {SEED.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
