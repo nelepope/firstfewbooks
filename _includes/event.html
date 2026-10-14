@@ -11,7 +11,7 @@
   {% endif %}
   <div class="event-text">
     <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</h3>
-    {% capture when %}{% if e.end_date %}{{ e.date | date: "%-d %b" }} – {{ e.end_date | date: "%-d %b" }}{% endif %}{% endcapture %}
+    {% capture when %}{% if e.end_date %}{{ e.date | date: "%-d %b" }} – {{ e.end_date | date: "%-d %b" }}{% else %}{{ e.date | date: "%a %-d %b" }}{% endif %}{% endcapture %}
     {% assign bits = "" | split: "" %}
     {% if when != "" %}{% assign bits = bits | push: when %}{% endif %}
     {% if e.time %}{% assign bits = bits | push: e.time %}{% endif %}
