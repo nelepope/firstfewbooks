@@ -112,7 +112,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .hero-text {
   grid-column: 1; margin: -.405em 0 -.346em;
   color: var(--accent); font-size: calc(20.4 * var(--u)); line-height: 1.4;
-  text-align: justify; hyphens: auto;
+  text-align: justify; hyphens: manual;
 }
 .hero-image { grid-column: 3; display: block; width: 100%; height: var(--row); object-fit: cover; }
 
