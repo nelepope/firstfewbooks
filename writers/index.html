@@ -5,13 +5,13 @@ title: Writers
 <div class="wrap">
   <h1>Writers</h1>
   <div class="member-grid">
-    {% assign members = site.members | sort: "name" %}
+    {% comment %}Sorted by file name (first name), so titles like "Dr" don't change the order.{% endcomment %}{% assign members = site.members | sort: "slug" %}
     {% for member in members %}
       <a class="member-card" href="{{ member.url | relative_url }}">
         {% if member.photo %}
           <img class="member-card-photo" src="{{ member.photo | relative_url }}" alt="{{ member.name }}" loading="lazy">
         {% else %}
-          {% assign parts = member.name | split: " " %}
+          {% assign parts = member.name | remove_first: "Dr " | split: " " %}
           <div class="member-card-initials" aria-hidden="true">{% for part in parts limit: 2 %}{{ part | slice: 0 }}{% endfor %}</div>
         {% endif %}
         <h3>{{ member.name }}</h3>

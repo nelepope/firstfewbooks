@@ -1,5 +1,5 @@
 ---
-name: Anne
+name: Dr Anne Hsu
 # Her Substack username is drannehsu; this is her publication, Art of Self-Leadership.
 substack: selfleadershipskills
 links:
