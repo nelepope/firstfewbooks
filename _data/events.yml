@@ -10,7 +10,6 @@
 #   end_date: 2026-12-01   # for a course or series: it stays listed until this date
 #   host: Jane Smith
 #   image: /assets/images/events/reading-night.jpg   # optional
-#   image_fit: contain   # optional: show the whole picture (for logos) instead of cropping
 
 - title: "Digital Wisdom: A Social Media and AI Odyssey"
   date: 2026-10-06
@@ -20,7 +19,6 @@
   description: For anyone wondering how to find reality, meaning, and depth in a robotic world.
   url: https://www.modernanxiety.org/odysseys
   image: /assets/images/events/odysseys.jpg
-  image_fit: contain
   host: College of Modern Anxiety
 
 - title: "GLAM: Games–Language–Art–Meaning"
@@ -31,7 +29,6 @@
   description: An Odyssey for young artists, using games to explore freedom and constraint in language, art and meaning. Led by Ky Osborne.
   url: https://www.modernanxiety.org/odysseys
   image: /assets/images/events/odysseys.jpg
-  image_fit: contain
   host: College of Modern Anxiety
 
 - title: "Neither/Nor: Bryan Kam on Mistaking Concepts for Experience"
@@ -41,7 +38,6 @@
   description: "Part of the Int/a Speaker Series. Drawing on early Buddhist thought, Darwin, Wittgenstein and his own life with type 1 diabetes, Bryan suggests the middle way is less a position than a skill: knowing when to build up and when to let go. Talk followed by Q&A. Free."
   url: https://luma.com/czlpozci
   image: /assets/images/events/neither-nor-talk.jpg
-  image_fit: contain
   host: Bryan Kam
 
 - title: Health is a Privilege

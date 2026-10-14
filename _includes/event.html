@@ -6,7 +6,7 @@
   </time>
   {% if e.image %}
     {% if e.url %}<a class="event-image-link" href="{{ e.url }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{% endif %}
-    <img class="event-image{% if e.image_fit == 'contain' %} contain{% endif %}" src="{{ e.image | relative_url }}" alt="" loading="lazy">
+    <img class="event-image" src="{{ e.image | relative_url }}" alt="" loading="lazy">
     {% if e.url %}</a>{% endif %}
   {% endif %}
   <div class="event-text">
