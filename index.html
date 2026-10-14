@@ -27,7 +27,7 @@ home: true
 <section class="section wrap">
   <h2 class="rule-heading"><a href="{{ '/events/' | relative_url }}">Events</a></h2>
   {% include events-list.html show="upcoming" %}
-  {% if shown == 0 %}<p class="coming-soon">Coming soon</p>{% endif %}
+  <p class="coming-soon"{% if shown > 0 %} hidden{% endif %}>Coming soon</p>
 </section>
 
 {% assign books = site.books | sort: "date" | reverse %}

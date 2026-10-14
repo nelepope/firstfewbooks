@@ -34,21 +34,46 @@
   </main>
   {% include footer.html %}
   <script>
-    // Mark events happening today (worked out in the visitor's browser, so it's right all day).
-    // A series like "Tuesdays, 18:30" only counts on that weekday.
+    // Events are sorted into upcoming and past when the site is built (every 6 hours), so the
+    // visitor's browser tidies up with today's date: finished events leave the upcoming list
+    // (moving to "Past events" on the Events page), running ones show their next date, and
+    // anything on today is marked. A series like "Tuesdays, 18:30" only runs on that weekday.
     (function () {
-      var now = new Date();
-      var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+      function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+      var now = new Date(), today = iso(now);
       var days = ['sun', 'mon', 'tues', 'wednes', 'thurs', 'fri', 'satur'];
-      document.querySelectorAll('.event[data-start]').forEach(function (event) {
-        if (today < event.dataset.start || today > event.dataset.end) return;
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var pastList = document.querySelector('.past-events .event-list');
+      document.querySelectorAll('.event-list:not(.event-list-past) .event[data-start]').forEach(function (event) {
+        var start = event.dataset.start, end = event.dataset.end;
+        if (end < today) {
+          if (pastList) { pastList.prepend(event); pastList.closest('.past-events').hidden = false; }
+          else event.remove();
+          return;
+        }
+        if (start >= today) return;
+        // Running now: find the next session, today included.
         var weekly = (event.dataset.time || '').toLowerCase().match(/\b(sun|mon|tues|wednes|thurs|fri|satur)days\b/);
-        if (weekly && days[now.getDay()] !== weekly[1]) return;
+        var next = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        if (weekly) while (days[next.getDay()] !== weekly[1]) next.setDate(next.getDate() + 1);
+        if (iso(next) > end) { if (pastList) { pastList.prepend(event); pastList.closest('.past-events').hidden = false; } else event.remove(); return; }
+        event.querySelector('.event-day').textContent = next.getDate();
+        event.querySelector('.event-month').textContent = months[next.getMonth()];
+        event.querySelector('.event-date').setAttribute('datetime', iso(next));
+        if (iso(next) !== today) event.querySelector('.event-date').insertAdjacentHTML('afterbegin', '<span class="event-next">Next</span>');
+      });
+      document.querySelectorAll('.event-list:not(.event-list-past) .event[data-start]').forEach(function (event) {
+        if (event.querySelector('.event-date').getAttribute('datetime') !== today) return;
         event.classList.add('is-today');
-        var label = document.createElement('span');
-        label.className = 'event-today';
-        label.textContent = 'Today';
-        event.querySelector('.event-text').prepend(label);
+        event.querySelector('.event-text').insertAdjacentHTML('afterbegin', '<span class="event-today">Today</span>');
+      });
+      document.querySelectorAll('.event-list:not(.event-list-past)').forEach(function (list) {
+        // Re-sort by the (possibly updated) next date.
+        Array.prototype.slice.call(list.children)
+          .sort(function (a, b) { return a.querySelector('.event-date').getAttribute('datetime') < b.querySelector('.event-date').getAttribute('datetime') ? -1 : 1; })
+          .forEach(function (event) { list.appendChild(event); });
+        var soon = list.parentNode.querySelector('.coming-soon');
+        if (soon && !list.children.length) soon.hidden = false;
       });
     })();
   </script>

@@ -5,13 +5,12 @@ title: Events
 <div class="wrap">
   <h1>Events</h1>
   {% include events-list.html show="upcoming" %}
-  {% if shown == 0 %}<p class="coming-soon">Coming soon</p>{% endif %}
+  <p class="coming-soon"{% if shown > 0 %} hidden{% endif %}>Coming soon</p>
 
-  <section class="section">
-    {% capture past_list %}{% include events-list.html show="past" %}{% endcapture %}
-    {% if shown > 0 %}
-      <h2 class="rule-heading">Past events</h2>
-      {{ past_list }}
-    {% endif %}
+  {% comment %}Always present (hidden when empty) so the page script can move events here once they finish.{% endcomment %}
+  {% capture past_list %}{% include events-list.html show="past" %}{% endcapture %}
+  <section class="section past-events"{% if shown == 0 %} hidden{% endif %}>
+    <h2 class="rule-heading">Past events</h2>
+    {{ past_list }}
   </section>
 </div>
