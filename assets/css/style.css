@@ -328,7 +328,7 @@ main > .wrap:first-child { padding-top: 48px; }
 /* Event pictures */
 .event-image-link { flex: none; display: block; }
 .event-image { display: block; flex: none; width: 168px; aspect-ratio: 3 / 2; object-fit: cover; }
-.event-image.contain { object-fit: contain; background: var(--cover); }
+.event-image.contain { object-fit: contain; }
 .event-text { flex: 1; min-width: 0; }
 @media (max-width: 640px) {
   .event.has-image { flex-wrap: wrap; }
