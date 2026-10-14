@@ -356,3 +356,8 @@ main > .wrap:first-child { padding-top: 48px; }
 .more-bottom { margin: 28px 0 0; text-align: right; }
 /* The home page shows the next three events; the rest are on the Events page. */
 .home-events .event-list > .event:nth-child(n + 4) { display: none; }
+/* Line each picture's top up with its event title (which sits lower when there's a "Today" label). */
+@media (min-width: 641px) {
+  .event .event-image-link, .event > .event-image { margin-top: 4px; }
+  .event.is-today .event-image-link, .event.is-today > .event-image { margin-top: 36px; }
+}
