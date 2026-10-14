@@ -65,7 +65,7 @@
       document.querySelectorAll('.event-list:not(.event-list-past) .event[data-start]').forEach(function (event) {
         if (event.querySelector('.event-date').getAttribute('datetime') !== today) return;
         event.classList.add('is-today');
-        event.querySelector('.event-text').insertAdjacentHTML('afterbegin', '<span class="event-today">Today</span>');
+        event.querySelector('.event-date').insertAdjacentHTML('beforeend', '<span class="event-today">Today</span>');
       });
       document.querySelectorAll('.event-list:not(.event-list-past)').forEach(function (list) {
         // Re-sort by the (possibly updated) next date.
