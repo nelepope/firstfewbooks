@@ -17,7 +17,7 @@
     {% if e.time %}{% assign bits = bits | push: e.time %}{% endif %}
     {% if e.place %}{% assign bits = bits | push: e.place %}{% endif %}
     {% if bits.size > 0 %}<p class="meta">{{ bits | join: " · " }}</p>{% endif %}
-    {% if e.description %}<p>{{ e.description }}</p>{% endif %}
+    {% if e.description %}<div class="event-desc"><p>{{ e.description }}</p><button type="button" class="event-more" aria-expanded="false" hidden>Read more</button></div>{% endif %}
     {% if e.host %}<p class="meta">Hosted by {{ e.host }}</p>{% endif %}
   </div>
 </li>

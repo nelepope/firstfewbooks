@@ -77,6 +77,19 @@
       });
     })();
   </script>
+  <script>
+    // Event descriptions show two lines; the arrow opens the rest (only shown when there's more).
+    document.querySelectorAll('.event-desc').forEach(function (desc) {
+      var text = desc.querySelector('p'), button = desc.querySelector('.event-more');
+      if (text.scrollHeight <= text.clientHeight + 2) return;
+      button.hidden = false;
+      button.addEventListener('click', function () {
+        var open = desc.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', open);
+        button.textContent = open ? 'Show less' : 'Read more';
+      });
+    });
+  </script>
   {% if page.home %}
   <script>
     // Hide the header logo while the big title is on screen.
