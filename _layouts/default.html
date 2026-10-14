@@ -33,6 +33,25 @@
     {{ content }}
   </main>
   {% include footer.html %}
+  <script>
+    // Mark events happening today (worked out in the visitor's browser, so it's right all day).
+    // A series like "Tuesdays, 18:30" only counts on that weekday.
+    (function () {
+      var now = new Date();
+      var today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+      var days = ['sun', 'mon', 'tues', 'wednes', 'thurs', 'fri', 'satur'];
+      document.querySelectorAll('.event[data-start]').forEach(function (event) {
+        if (today < event.dataset.start || today > event.dataset.end) return;
+        var weekly = (event.dataset.time || '').toLowerCase().match(/\b(sun|mon|tues|wednes|thurs|fri|satur)days\b/);
+        if (weekly && days[now.getDay()] !== weekly[1]) return;
+        event.classList.add('is-today');
+        var label = document.createElement('span');
+        label.className = 'event-today';
+        label.textContent = 'Today';
+        event.querySelector('.event-text').prepend(label);
+      });
+    })();
+  </script>
   {% if page.home %}
   <script>
     // Hide the header logo while the big title is on screen.

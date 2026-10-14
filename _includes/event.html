@@ -1,10 +1,15 @@
 {% assign e = include.event %}
-<li class="event">
+<li class="event{% if e.image %} has-image{% endif %}" data-start="{{ e.date | date: '%Y-%m-%d' }}" data-end="{{ e.end_date | default: e.date | date: '%Y-%m-%d' }}" data-time="{{ e.time | escape }}">
   <time class="event-date" datetime="{{ e.date | date: '%Y-%m-%d' }}">
     <span class="event-day">{{ e.date | date: "%-d" }}</span>
     <span class="event-month">{{ e.date | date: "%b" }}</span>
   </time>
-  <div>
+  {% if e.image %}
+    {% if e.url %}<a class="event-image-link" href="{{ e.url }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{% endif %}
+    <img class="event-image{% if e.image_fit == 'contain' %} contain{% endif %}" src="{{ e.image | relative_url }}" alt="" loading="lazy">
+    {% if e.url %}</a>{% endif %}
+  {% endif %}
+  <div class="event-text">
     <h3>{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}</h3>
     {% capture when %}{% if e.end_date %}{{ e.date | date: "%-d %b" }} – {{ e.end_date | date: "%-d %b" }}{% endif %}{% endcapture %}
     {% assign bits = "" | split: "" %}

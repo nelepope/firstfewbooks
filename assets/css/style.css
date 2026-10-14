@@ -324,3 +324,20 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; }
 .site-footer a { color: var(--accent); }
+
+/* Event pictures */
+.event-image-link { flex: none; display: block; }
+.event-image { display: block; flex: none; width: 168px; aspect-ratio: 3 / 2; object-fit: cover; }
+.event-image.contain { object-fit: contain; background: var(--cover); }
+.event-text { flex: 1; min-width: 0; }
+@media (max-width: 640px) {
+  .event.has-image { flex-wrap: wrap; }
+  .event.has-image .event-image-link, .event.has-image > .event-image { order: 3; width: 100%; margin-left: 104px; max-width: calc(100% - 104px); }
+  .event-image { width: 100%; }
+}
+/* Events happening today */
+.event.is-today { background: linear-gradient(90deg, rgba(128, 5, 5, .07), rgba(128, 5, 5, 0) 70%); box-shadow: inset 3px 0 0 var(--accent); padding-left: 14px; }
+.event-today {
+  display: inline-block; margin-bottom: .5em; padding: .35em .6em .2em; background: var(--accent); color: var(--bg);
+  font-family: var(--font-display); text-transform: uppercase; letter-spacing: .04em; font-size: .75rem; line-height: 1;
+}

@@ -28,6 +28,7 @@ COLUMNS = [
     ("link", "url"), ("url", "url"), ("ticket", "url"), ("website", "url"),
     ("host", "host"), ("organis", "host"), ("your name", "host"), ("who", "host"),
     ("show", "show"), ("approved", "show"),
+    ("image", "image"), ("picture", "image"), ("photo", "image"),
 ]
 DATE_FORMATS = ["%d/%m/%Y", "%Y-%m-%d", "%d/%m/%y", "%d %B %Y", "%d %b %Y", "%B %d, %Y", "%d.%m.%Y"]
 
