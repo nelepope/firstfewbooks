@@ -146,7 +146,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .post-list .post-card { padding: 24px 0; border-bottom: 1px solid var(--rule); }
 .post-card h3 { margin: 0 0 .3em; color: var(--accent); font-size: 1.35rem; line-height: 1.2; }
 .post-link { color: var(--accent); text-decoration: none; }
-.post-link:hover h3 { font-style: italic; }
+.post-link:hover h3 { opacity: .7; }
 .post-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 16px; background: var(--cover); }
 /* Dates, authors and event details: small Josefin capitals, like the nav. */
 .post-card .meta, .event .meta {
@@ -226,7 +226,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .event-month { font-size: .9rem; letter-spacing: .05em; margin-top: 6px; }
 .event h3 { margin: .15em 0 .35em; color: var(--accent); font-size: 1.35rem; line-height: 1.2; }
 .event h3 a { color: inherit; text-decoration: none; }
-.event h3 a:hover { font-style: italic; }
+.event h3 a:hover { opacity: .7; }
 .event p { margin: 0; color: var(--accent); }
 .event p:not(.meta) { opacity: .85; font-size: 1.05rem; line-height: 1.45; max-width: 46em; }
 .event p.meta + p:not(.meta) { margin-top: 0; }
@@ -243,7 +243,7 @@ main > .wrap:first-child { padding-top: 48px; }
   font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em;
   font-size: .8rem; text-decoration: none;
 }
-.post-author a:hover { font-style: italic; }
+.post-author a:hover { opacity: .85; }
 .member .post-author { display: none; }
 
 /* Blog filter: a button that opens a list of writers */
@@ -260,7 +260,7 @@ main > .wrap:first-child { padding-top: 48px; }
   display: block; width: 100%; text-align: left; padding: .5em 1em .35em; border: 0; background: none; cursor: pointer; color: var(--accent);
   font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; font-size: .9rem;
 }
-.filter button:hover, .filter button[aria-pressed="true"] { font-style: italic; background: var(--cover); }
+.filter button:hover, .filter button[aria-pressed="true"] { background: var(--cover); }
 .post-card[hidden] { display: none; }
 
 /* Hand and quill in the second O of the title (positions measured from the mockup).
@@ -284,7 +284,7 @@ main > .wrap:first-child { padding-top: 48px; }
 .work-title { font-size: 1.1rem; line-height: 1.3; }
 .work-list .link-domain { margin-left: auto; text-align: right; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .02em; font-size: .7rem; opacity: .7; white-space: nowrap; }
 .work-list .link-arrow { margin-left: 0; font-size: 1rem; }
-.work-list a:hover .work-title { font-style: italic; }
+.work-list a:hover .work-title { opacity: .7; }
 @media (max-width: 640px) { .work-list .link-domain { display: none; } }
 
 /* Book synopsis: a box that appears when hovering over (or tabbing to) the title;
@@ -316,7 +316,7 @@ main > .wrap:first-child { padding-top: 48px; }
   color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px;
 }
 .member-links a::after { content: " ↗"; font-size: .85em; }
-.member-links a:hover { font-style: italic; border-color: var(--accent); }
+.member-links a:hover { border-color: var(--accent); }
 /* Writers page on phones: two writers per row */
 @media (max-width: 640px) {
   .member-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
@@ -352,7 +352,7 @@ main > .wrap:first-child { padding-top: 48px; }
   color: var(--accent); text-decoration: none; white-space: nowrap;
 }
 .more-link::after { content: " →"; }
-.more-link:hover { font-style: italic; }
+.more-link:hover { opacity: .7; }
 .more-bottom { margin: 28px 0 0; text-align: right; }
 /* The home page shows the next three events; the rest are on the Events page. */
 .home-events .event-list > .event:nth-child(n + 4) { display: none; }
@@ -394,5 +394,5 @@ main > .wrap:first-child { padding-top: 48px; }
 }
 .event-more::after { content: "▾"; font-size: 1rem; line-height: 1; transition: transform .2s; }
 .event-desc.is-open .event-more::after { transform: rotate(180deg); }
-.event-more:hover { font-style: italic; }
+.event-more:hover { opacity: .7; }
 .event-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
