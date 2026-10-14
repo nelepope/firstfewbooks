@@ -365,8 +365,14 @@ main > .wrap:first-child { padding-top: 48px; }
 @media (min-width: 1001px) {
   .home-columns { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; align-items: start; }
   .home-blogs .post-grid { grid-template-columns: 1fr; gap: 28px; }
-  .home-blogs .post-card { display: grid; grid-template-columns: 200px 1fr; column-gap: 20px; }
-  .home-blogs .post-media { grid-row: span 4; }
+  .home-blogs .post-card { display: grid; grid-template-columns: 200px 1fr; grid-template-rows: auto auto auto auto 1fr; column-gap: 20px; }
+  /* Picture on the left; the writer's name sits with the text, above the title. */
+  .home-blogs .post-media { display: contents; }
+  .home-blogs .post-media > .post-link { grid-column: 1; grid-row: 1 / span 5; align-self: start; }
+  .home-blogs .post-card > * { grid-column: 2; }
+  .home-blogs .post-media > .post-author { grid-column: 2; grid-row: 1; margin-bottom: .5em; }
+  .home-blogs .post-card .meta { margin-bottom: .35em; }
+  .home-blogs .post-card > p:last-child { margin-top: 0; }
   .home-blogs .post-image { margin-bottom: 0; }
   .home-blogs .post-card h3 { font-size: 1.2rem; }
   .home-events .event { gap: 20px; }
