@@ -9,4 +9,4 @@ links:
     url: https://www.seresearch.qmul.ac.uk/cmai/people/ahsu/#publications
 ---
 
-Emotional wellbeing, immersive experience design, and creativity.
+Anne is a lecturer in psychology and computer science at Queen Mary University of London, with a PhD in neuroscience and physics. Her research explores motivation, emotional wellbeing, behaviour change, immersive design, and creativity. She also runs public workshops that invite people to explore aliveness, meaning, and connection through playful, creative experiences.
