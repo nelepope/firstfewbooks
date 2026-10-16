@@ -7,5 +7,62 @@
     "image": "/images/writing/gheorghiu-limits-to-knowledge.jpg",
     "author": "alexander-gheorghiu",
     "where": "Aeon"
+  },
+  {
+    "title": "‘The Philosopher’: How Aristotle’s reputation lives on",
+    "url": "https://alexandergheorghiu.com/writing/the-philosopher-aristotle.html",
+    "date": "2026-09-01T00:00:00Z",
+    "date_label": "September 2026",
+    "where": "Times Literary Supplement",
+    "excerpt": "Why Aristotle was for two thousand years simply “the Philosopher”, and what a new history of his logic recovers.",
+    "image": "/images/writing/gheorghiu-aristotle.jpg",
+    "author": "alexander-gheorghiu"
+  },
+  {
+    "title": "A world in which AI feels pain",
+    "url": "https://www.the-tls.com/regular-features/commentary/saul-kripkes-naming-and-necessity-essay-alexander-v-gheorghiu",
+    "date": "2026-05-27T12:29:37Z",
+    "where": "Times Literary Supplement",
+    "excerpt": "Saul Kripke’s ‘Naming and Necessity’, half a century on",
+    "image": "/images/writing/gheorghiu-ai-feels-pain.jpg",
+    "author": "alexander-gheorghiu"
+  },
+  {
+    "title": "By inference",
+    "url": "https://www.the-tls.com/philosophy/history-of-philosophy/reasons-for-logic-logic-for-reasons-ulf-hlobil-and-robert-brandom",
+    "date": "2025-10-01T11:12:32Z",
+    "where": "Times Literary Supplement",
+    "excerpt": "An alternative account of logic: on Ulf Hlobil and Robert Brandom’s Reasons for Logic, Logic for Reasons",
+    "image": "/images/writing/gheorghiu-by-inference.jpg",
+    "author": "alexander-gheorghiu"
+  },
+  {
+    "title": "High School Algebra and the Limits of AI",
+    "url": "https://alexandergheorghiu.com/writing/high-school-algebra-limits-of-ai.html",
+    "date": "2025-10-01T00:00:00Z",
+    "date_label": "October 2025",
+    "where": "Mathematics Today",
+    "excerpt": "What school mathematics reveals about what AI genuinely cannot do. Winner of the Graham Hoare Prize 2025.",
+    "image": "/images/writing/gheorghiu-high-school-algebra.svg",
+    "author": "alexander-gheorghiu"
+  },
+  {
+    "title": "The Mathematics of Double-checking Programs",
+    "url": "https://alexandergheorghiu.com/writing/mathematics-of-double-checking-programs.html",
+    "date": "2025-01-01T00:00:00Z",
+    "date_label": "January 2025",
+    "where": "Mathematics Today",
+    "excerpt": "How formal verification methods underpin reliable software and AI.",
+    "image": "/images/writing/gheorghiu-double-checking.jpg",
+    "author": "alexander-gheorghiu"
+  },
+  {
+    "title": "Researchers have invented a new system of logic that could boost critical thinking and AI",
+    "url": "https://theconversation.com/researchers-have-invented-a-new-system-of-logic-that-could-boost-critical-thinking-and-ai-242617",
+    "date": "2024-11-14T13:14:42Z",
+    "where": "The Conversation",
+    "excerpt": "The rigid structures of language we once clung to with certainty are cracking.",
+    "image": "/images/writing/gheorghiu-new-system-of-logic.jpg",
+    "author": "alexander-gheorghiu"
   }
 ]

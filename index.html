@@ -16,8 +16,8 @@ home: true
 <div class="section wrap home-columns">
 <section class="home-col home-blogs">
   <div class="rule-head">
-    <h2 class="rule-heading">Latest blogs</h2>
-    <a class="more-link" href="{{ '/blog/' | relative_url }}">More blogs</a>
+    <h2 class="rule-heading">Latest reads</h2>
+    <a class="more-link" href="{{ '/blog/' | relative_url }}">Read more</a>
   </div>
   <div class="post-grid">
     {% for post in site.data.feed limit: 5 %}
@@ -26,7 +26,7 @@ home: true
       <p class="meta">Posts from members' Substacks will appear here.</p>
     {% endfor %}
   </div>
-  <p class="more-bottom"><a class="more-link" href="{{ '/blog/' | relative_url }}">More blogs</a></p>
+  <p class="more-bottom"><a class="more-link" href="{{ '/blog/' | relative_url }}">Read more</a></p>
 </section>
 
 <section class="home-col home-events">

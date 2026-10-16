@@ -5,6 +5,6 @@
     {% if author %}<p class="post-author"><a href="{{ author.url | relative_url }}">{{ author.name }}</a></p>{% endif %}
   </div>
   <a class="post-link" href="{{ include.post.url }}" target="_blank" rel="noopener"><h3>{{ include.post.title }}</h3></a>
-  <p class="meta"><time datetime="{{ include.post.date }}">{{ include.post.date | date: "%-d %B %Y" }}</time></p>
+  <p class="meta"><time datetime="{{ include.post.date }}">{% if include.post.date_label %}{{ include.post.date_label }}{% else %}{{ include.post.date | date: "%-d %B %Y" }}{% endif %}</time>{% if include.post.where %} · {{ include.post.where }}{% endif %}</p>
   {% if include.post.excerpt != "" %}<p>{{ include.post.excerpt | truncatewords: 30 }}</p>{% endif %}
 </article>

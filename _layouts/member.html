@@ -45,7 +45,7 @@ layout: default
 
   {% if posts.size > 0 %}
     <section class="section">
-      <h2 class="rule-heading">Latest blogs</h2>
+      <h2 class="rule-heading">Latest reads</h2>
       <div class="post-grid post-row">
         {% for post in posts limit: 3 %}{% include post-card.html post=post %}{% endfor %}
       </div>
