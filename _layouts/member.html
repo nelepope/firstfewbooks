@@ -63,6 +63,7 @@ layout: default
               {% if link.where %}<p class="post-author"><span>{{ link.where }}</span></p>{% endif %}
             </div>
             <a class="post-link" href="{{ link.url }}" target="_blank" rel="noopener"><h3>{{ link.title }}</h3></a>
+            {% if link.when %}<p class="meta">{{ link.when }}</p>{% endif %}
             {% if link.note %}<p>{{ link.note }}</p>{% endif %}
           </article>
         {% endfor %}

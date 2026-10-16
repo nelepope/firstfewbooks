@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 720" width="2000" height="720" role="img" aria-label="A blackboard of the high-school laws of arithmetic, with one identity that escapes them picked out in red.">
+  <defs>
+    <linearGradient id="slate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#272c28"/>
+      <stop offset="1" stop-color="#1b1f1c"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.28"/>
+    </radialGradient>
+    <style>
+      .chalk  { fill:#f1ece0; font-family:Georgia,'EB Garamond',serif; }
+      .faint  { fill:#f1ece0; opacity:.16; font-family:Georgia,serif; font-style:italic; }
+      .label  { fill:#d3cbba; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:.32em; }
+      .accent { fill:#e7869f; font-family:Georgia,'EB Garamond',serif; }
+      .ex     { font-size:20px; }
+    </style>
+  </defs>
+
+  <rect width="2000" height="720" fill="url(#slate)"/>
+
+  <!-- faint scattered working in the background -->
+  <g class="faint" font-size="38">
+    <text x="70" y="110">a&#178; &#8722; b&#178; = (a&#8722;b)(a+b)</text>
+    <text x="1480" y="150">&#8721; n = n(n+1)/2</text>
+    <text x="120" y="660">(x + 1)&#178; = x&#178; + 2x + 1</text>
+    <text x="1430" y="640">e<tspan dy="-16" font-size="26">i&#960;</tspan><tspan dy="16"> + 1 = 0</tspan></text>
+    <text x="1560" y="430">&#8730;2 &#8713; &#8474;</text>
+  </g>
+
+  <text class="label" x="110" y="120" font-size="26">THE LAWS OF ARITHMETIC</text>
+  <line x1="110" y1="146" x2="640" y2="146" stroke="#6b655c" stroke-width="2" opacity="0.7"/>
+
+  <g class="chalk" font-style="italic" font-size="40" opacity="0.95">
+    <text x="120"  y="250">x + y = y + x</text>
+    <text x="120"  y="330">(x + y) + z = x + (y + z)</text>
+    <text x="120"  y="410">x &#183; y = y &#183; x</text>
+    <text x="120"  y="490">(x &#183; y) &#183; z = x &#183; (y &#183; z)</text>
+    <text x="120"  y="570">x &#183; (y + z) = x &#183; y + x &#183; z</text>
+
+    <text x="820"  y="250">x &#183; 1 = x</text>
+    <text x="820"  y="330">1<tspan class="ex" dy="-16">x</tspan><tspan dy="16"> = 1</tspan></text>
+    <text x="820"  y="410">x<tspan class="ex" dy="-16">1</tspan><tspan dy="16"> = x</tspan></text>
+    <text x="820"  y="490">x<tspan class="ex" dy="-16">y+z</tspan><tspan dy="16"> = x</tspan><tspan class="ex" dy="-16">y</tspan><tspan dy="16"> &#183; x</tspan><tspan class="ex" dy="-16">z</tspan></text>
+    <text x="820"  y="570">(x &#183; y)<tspan class="ex" dy="-16">z</tspan><tspan dy="16"> = x</tspan><tspan class="ex" dy="-16">z</tspan><tspan dy="16"> &#183; y</tspan><tspan class="ex" dy="-16">z</tspan></text>
+
+    <text x="1380" y="250">(x<tspan class="ex" dy="-16">y</tspan><tspan dy="16">)</tspan><tspan class="ex" dy="-16">z</tspan><tspan dy="16"> = x</tspan><tspan class="ex" dy="-16">y&#183;z</tspan></text>
+  </g>
+
+  <line x1="1380" y1="300" x2="1900" y2="300" stroke="#6b655c" stroke-width="1.5" opacity="0.55"/>
+  <text class="accent" x="1380" y="350" font-style="italic" font-size="30">&#8230; yet one true</text>
+  <text class="accent" x="1380" y="392" font-style="italic" font-size="30">identity escapes</text>
+  <text class="accent" x="1380" y="434" font-style="italic" font-size="30">them all.</text>
+
+  <rect width="2000" height="720" fill="url(#vig)"/>
+</svg>
