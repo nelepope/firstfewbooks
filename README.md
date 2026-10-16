@@ -21,7 +21,7 @@ Create `_members/jane-smith.md`:
 name: Jane Smith
 tagline: Writing a debut crime novel.
 substack: https://janesmith.substack.com
-photo: /assets/images/members/jane-smith.jpg   # optional; initials are shown otherwise
+photo: /images/members/jane-smith.jpg   # optional; initials are shown otherwise
 links:
   - label: Website
     url: https://janesmith.com
@@ -47,7 +47,7 @@ date: 2027-03-01          # publication date; newest show first
 blurb: One or two lines.
 price: £12.99
 buy_url: https://...      # leave out to show "Coming soon"
-cover: /assets/images/books/book-title.jpg   # optional
+cover: /images/books/book-title.jpg   # optional
 ---
 ```
 

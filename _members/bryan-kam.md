@@ -1,8 +1,8 @@
 ---
 name: Bryan Kam
-photo: /assets/images/members/bryan-kam.jpg
+photo: /images/members/bryan-kam.jpg
 # Decorative picture next to his name
-motif: /assets/images/motifs/yin-yang.svg
+motif: /images/motifs/yin-yang.svg
 substack: www.bryankam.com
 ---
 

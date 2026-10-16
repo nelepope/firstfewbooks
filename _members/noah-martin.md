@@ -1,6 +1,6 @@
 ---
 name: Dr Noah Martin
-photo: /assets/images/members/noah-martin.jpg
+photo: /images/members/noah-martin.jpg
 substack: collegeofmodernanxiety
 links:
   - label: Website

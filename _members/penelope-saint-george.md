@@ -1,6 +1,6 @@
 ---
 name: Penelope Saint-George
-photo: /assets/images/members/penelope-saint-george.jpg
+photo: /images/members/penelope-saint-george.jpg
 substack: nelepope
 links:
   - label: Website
