@@ -222,13 +222,19 @@ def main():
             kept = [
                 dict(post, muted=post["title"].lower() in fields["mute"] or post["url"].rstrip("/").lower() in fields["mute"])
                 for post in source
-                if post.get("author") == path.stem
+                if post.get("author") == path.stem and "where" not in post
                 and post["title"].lower() not in fields["hide"]
                 and post["url"].rstrip("/").lower() not in fields["hide"]
             ]
             posts += kept
             # "::warning::" makes the message show up on the GitHub Actions run.
             print(f"::warning::{path.stem}: feed failed ({error}); kept {len(kept)} earlier posts")
+
+    # Articles published elsewhere (e.g. a writer's Aeon essay), added by hand in _data/articles.json.
+    try:
+        posts += json.loads((ROOT / "_data" / "articles.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        pass
 
     posts.sort(key=lambda post: post["date"], reverse=True)
     out = ROOT / "_data" / "feed.json"
@@ -237,7 +243,7 @@ def main():
     print(f"{len(posts)} posts written to {out.relative_to(ROOT)}")
     # Off GitHub, with every feed fetched, refresh the saved copy (commit it with the next change).
     if not failed and not os.environ.get("GITHUB_ACTIONS"):
-        SEED.write_text(json.dumps(posts, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        SEED.write_text(json.dumps([post for post in posts if "where" not in post], indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"saved copy updated: {SEED.relative_to(ROOT)}")
 
 

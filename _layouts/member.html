@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-{% assign posts = site.data.feed | where: "author", page.slug %}
+{% comment %}Their Substack posts (articles added by hand already appear in their Writing section).{% endcomment %}
+{% assign posts = site.data.feed | where: "author", page.slug | where_exp: "post", "post.where == nil" %}
 {% assign books = site.books | where: "author", page.slug %}
 <div class="wrap member">
   <header class="member-header">
