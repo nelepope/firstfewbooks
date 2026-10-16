@@ -54,6 +54,20 @@ layout: default
   {% for group in page.sections %}
     <section class="section">
       <h2 class="rule-heading">{{ group.title }}</h2>
+      {% if group.style == "cards" %}
+      <div class="post-grid post-row">
+        {% for link in group.links %}
+          <article class="post-card">
+            <div class="post-media">
+              {% if link.image %}<a class="post-link" href="{{ link.url }}" target="_blank" rel="noopener"><img class="post-image" src="{{ link.image | relative_url }}" alt="" loading="lazy"></a>{% endif %}
+              {% if link.where %}<p class="post-author"><span>{{ link.where }}</span></p>{% endif %}
+            </div>
+            <a class="post-link" href="{{ link.url }}" target="_blank" rel="noopener"><h3>{{ link.title }}</h3></a>
+            {% if link.note %}<p>{{ link.note }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+      {% else %}
       <ul class="work-list">
         {% for link in group.links %}
           {% assign domain = link.url | remove: "https://" | remove: "http://" | remove: "www." | split: "/" | first %}
@@ -63,6 +77,7 @@ layout: default
           </li>
         {% endfor %}
       </ul>
+      {% endif %}
     </section>
   {% endfor %}
 
